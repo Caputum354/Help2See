@@ -47,14 +47,25 @@ Cadastro com **confirmação por e-mail**, login com sessão por token (TTL 30 d
 ### 💳 Assinatura Profissional — `/api/subscription/*`
 Checkout Pro do **Mercado Pago** com preço decidido **no servidor** (R$ 49/mês ou R$ 468/ano). Webhook de notificação **validado por assinatura HMAC** (`x-signature`) antes de qualquer ativação; confirmação idempotente; cancelamento mantém acesso até o fim do período pago. MySQL é a fonte da verdade.
 
+<img width="1899" height="1008" alt="image" src="https://github.com/user-attachments/assets/52ef0513-96fb-418a-965a-50f221bb191c" />
+
+
 ### 📊 Telemetria privacy-first — `/api/collect`
 **Opt-in, desligada por padrão.** Eventos anônimos de uso/fricção de acessibilidade: pseudônimo de visitante com **rotação diária via HMAC** (nunca IP bruto), sem valores de formulário, armazenados no MongoDB com **TTL de 90 dias** e agregados por hora (`jobs/aggregate.py`). Detalhes em [site_finalPreto/ANALYTICS.md](site_finalPreto/ANALYTICS.md).
 
 ### ✉️ Contato comercial — `/api/contact`
 Formulário do site encaminhado por e-mail à equipe (Reply-To = visitante), com rate-limit por IP. Nada é persistido no servidor.
 
+<img width="1911" height="924" alt="image" src="https://github.com/user-attachments/assets/d7679fe7-0de1-4b01-8adb-663e85d5fd17" />
+
 ### 🌐 Site institucional
 11 páginas com **i18n em 3 idiomas** (PT/EN/ES), skip-links, ARIA, foco visível e `prefers-reduced-motion`. Páginas: home, plugin, preços, sobre, FAQ, contato, login/conta e fluxo completo de recuperação de senha.
+
+<img width="1894" height="985" alt="image" src="https://github.com/user-attachments/assets/5826573e-4a69-412d-b86c-cb1e8be8805d" />
+
+<img width="1903" height="1079" alt="image" src="https://github.com/user-attachments/assets/c4593fe4-4eb5-4329-af67-c5db13d69d61" />
+
+<img width="1902" height="1000" alt="image" src="https://github.com/user-attachments/assets/7097d0a0-1ac0-41e7-83a4-c62d36cf4bd3" />
 
 ## Stack
 
