@@ -182,3 +182,37 @@
 .auth-hidden {
   display: none !important;
 }
+
+/* ── Mobile ─────────────────────────────────
+   A topbar estourava ~75px além da tela (padding 40px + gap 18px + fonte
+   grande): "Voltar ao site" quebrava em 3 linhas e o seletor de idioma era
+   cortado. Compacta tudo para caber em 360–414px. */
+@media (max-width: 640px) {
+  .auth-topbar {
+    padding: 12px 14px;
+  }
+
+  .auth-topbar .logo-img {
+    height: 22px;
+  }
+
+  .auth-topbar-right {
+    gap: 8px;
+    font-size: 12.5px;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .auth-topbar-right .js-lang-select {
+    font-size: 12px;
+    max-width: 92px;
+  }
+
+  .auth-page {
+    padding: 100px 16px 48px;
+  }
+
+  .auth-card {
+    padding: 32px 22px;
+  }
+}

@@ -78,6 +78,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Impede scroll lateral no mobile causado por elementos absolutos que
+     passam da borda (ex.: pop-up do VLibras, glows decorativos). */
+  overflow-x: hidden;
 }
 
 body {
@@ -709,6 +712,21 @@ section {
   box-shadow: 0 0 10px 4px rgba(211, 220, 42, 0.3);
 }
 
+/* Entrada dos elementos do hero. Eles nascem com opacity 0 e ESTA animação
+   (forwards) é o que os torna visíveis — sem ela, subtítulo e botões nunca
+   aparecem. Com prefers-reduced-motion o bloco global zera a duração e o
+   estado final (visível) é aplicado na hora. */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Hero eyebrow */
 .hero-eyebrow {
   display: inline-flex;
@@ -724,6 +742,7 @@ section {
   border-radius: 100px;
   margin-bottom: 36px;
   opacity: 0;
+  animation: hero-fade-up 0.8s var(--ease-smooth) 0.15s forwards;
   background: rgba(211, 220, 42, 0.03);
   backdrop-filter: blur(4px);
 }
@@ -820,6 +839,7 @@ section {
   line-height: 1.7;
   margin-bottom: 52px;
   opacity: 0;
+  animation: hero-fade-up 0.8s var(--ease-smooth) 0.35s forwards;
 }
 
 .hero-sub strong {
@@ -833,6 +853,7 @@ section {
   justify-content: center;
   flex-wrap: wrap;
   opacity: 0;
+  animation: hero-fade-up 0.8s var(--ease-smooth) 0.55s forwards;
 }
 
 .hero-scroll {
@@ -2989,6 +3010,17 @@ footer::before {
 }
 
 @media (max-width: 640px) {
+  /* Respiro lateral padrão de celular em todas as seções (o [class] ganha
+     das regras de classe única, ex.: .features { padding: 120px 60px }). */
+  section[class] {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  nav {
+    padding: 14px 18px;
+  }
+
   .stats {
     grid-template-columns: 1fr 1fr;
   }
@@ -2997,8 +3029,46 @@ footer::before {
     grid-template-columns: 1fr;
   }
 
+  .hero {
+    min-height: 92vh;
+    padding-top: 110px;
+    padding-bottom: 70px;
+  }
+
+  /* Título dimensionado para caber na largura do aparelho (antes, 50.9px
+     estourava e o overflow:hidden cortava as pontas das letras). */
   .hero-title {
-    font-size: 50.9px;
+    font-size: clamp(27px, 8.2vw, 36px);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-sub {
+    font-size: 16.5px;
+    margin-bottom: 40px;
+  }
+
+  /* CTAs empilhados e com área de toque generosa. */
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-secondary {
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 10.5px;
+    padding: 6px 12px;
+    letter-spacing: 0.14em;
+  }
+
+  .about-hero-title {
+    font-size: 36px;
   }
 
   .footer-top {
@@ -3014,7 +3084,7 @@ footer::before {
   }
 
   .faq-hero-title {
-    font-size: 42.4px;
+    font-size: 34px;
   }
 
   .faq-cta-btns {
@@ -3034,6 +3104,8 @@ footer::before {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    /* Sem escalonamento: o conteúdo (hero sub/CTAs) aparece na hora. */
+    animation-delay: 0s !important;
     transition-duration: 0.01ms !important;
   }
 }

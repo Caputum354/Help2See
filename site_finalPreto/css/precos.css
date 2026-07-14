@@ -890,6 +890,12 @@
         padding: 130px 24px 80px;
     }
 
+    /* Título cabendo na largura do celular (o clamp base tem mínimo de
+       42.4px, que estoura e é cortado pelo overflow:hidden da seção). */
+    .pricing-hero h1 {
+        font-size: clamp(30px, 8.6vw, 40px);
+    }
+
     .plans-section {
         padding: 0 24px 80px;
     }
