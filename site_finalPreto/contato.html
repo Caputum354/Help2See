@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="contato.default.pageTitle">Falar com a equipe — Help2See</title>
+  <meta name="description" content="Solicite um diagnóstico gratuito ou fale com o time comercial do Help2See.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <style>
+    .contact-card { max-width: 500px; }
+    .contact-eyebrow {
+      display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--purple); background: rgba(74,71,151,.08);
+      padding: 5px 12px; border-radius: 100px; margin-bottom: 14px;
+    }
+    .auth-field textarea {
+      width: 100%; background: var(--navy3); border: 1px solid var(--gray2); border-radius: 12px;
+      padding: 13px 16px; font-family: var(--sans); font-size: 15.7px; color: var(--white);
+      resize: vertical; min-height: 96px; transition: border-color .2s, box-shadow .2s;
+    }
+    .auth-field textarea:focus { outline: none; border-color: var(--purple); box-shadow: 0 0 0 3px rgba(74,71,151,.15); }
+    .field-row { display: flex; gap: 12px; }
+    .field-row > .auth-field { flex: 1; }
+    .contact-success { text-align: center; padding: 8px 0 4px; }
+    .contact-success .ok-badge {
+      width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 18px;
+      background: rgba(74,71,151,.10); display: flex; align-items: center; justify-content: center;
+    }
+    .contact-success .ok-badge svg { width: 30px; height: 30px; color: var(--purple); }
+    .contact-success h1 { font-family: var(--serif); font-size: 28px; margin-bottom: 10px; }
+    .contact-success p { color: var(--gray); font-size: 15.7px; line-height: 1.65; margin-bottom: 22px; }
+    .contact-success .back-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 460px) { .field-row { flex-direction: column; gap: 0; } }
+  </style>
+</head>
+
+<body data-page="contato">
+
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light bg-light-1"></div>
+    <div class="bg-light bg-light-2"></div>
+    <div class="bg-light bg-light-3"></div>
+    <div class="bg-light bg-light-4"></div>
+  </div>
+
+  <header class="auth-topbar">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial" data-i18n-attr="aria-label:nav.logoAria">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+    <div class="auth-topbar-right">
+      <a href="precos.html" style="color:var(--gray);text-decoration:none;font-weight:600;" data-i18n="contato.topback">← Voltar aos planos</a>
+      <select class="js-lang-select" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+        <option value="pt">Português</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <section class="auth-card contact-card" aria-labelledby="contact-title">
+
+      <!-- FORM -->
+      <div id="contact-form-wrap">
+        <span class="contact-eyebrow" id="contact-eyebrow" data-i18n="contato.default.eyebrow">Fale conosco</span>
+        <h1 id="contact-title" data-i18n="contato.default.title">Fale com a nossa equipe</h1>
+        <p class="auth-sub" id="contact-sub" style="text-align:left;" data-i18n="contato.default.sub">Preencha os dados abaixo e retornamos em até 1 dia
+          útil.</p>
+
+        <form id="contact-form" novalidate>
+          <div class="field-row">
+            <div class="auth-field">
+              <label for="c-name" data-i18n="contato.form.name">Nome</label>
+              <input type="text" id="c-name" autocomplete="name" placeholder="Seu nome" required data-i18n-attr="placeholder:contato.form.namePlaceholder" />
+            </div>
+            <div class="auth-field">
+              <label for="c-email" data-i18n="contato.form.email">E-mail</label>
+              <input type="email" id="c-email" autocomplete="email" placeholder="voce@email.com" required data-i18n-attr="placeholder:contato.form.emailPlaceholder" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="auth-field">
+              <label for="c-company" data-i18n="contato.form.company">Empresa / site</label>
+              <input type="text" id="c-company" placeholder="suaempresa.com.br" required data-i18n-attr="placeholder:contato.form.companyPlaceholder" />
+            </div>
+            <div class="auth-field">
+              <label for="c-phone" data-i18n-html="contato.form.phone">Telefone <span style="text-transform:none;color:#A9A8B6">(opcional)</span></label>
+              <input type="tel" id="c-phone" autocomplete="tel" placeholder="(11) 90000-0000" />
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <label for="c-message" id="c-message-label" data-i18n="contato.default.msgLabel">Mensagem</label>
+            <textarea id="c-message" placeholder="Como podemos ajudar?" data-i18n-attr="placeholder:contato.default.msgPlaceholder"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary auth-submit" id="c-submit" data-i18n="contato.form.submit">Enviar pedido</button>
+          <p class="auth-msg" id="c-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <!-- SUCCESS -->
+      <div id="contact-success" class="contact-success auth-hidden" role="status" aria-live="polite">
+        <div class="ok-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </div>
+        <h1 id="success-title" data-i18n="contato.default.successTitle">Pedido enviado!</h1>
+        <p id="success-text" data-i18n="contato.default.successText">Recebemos sua solicitação. Nossa equipe entra em contato em até 1 dia útil pelo e-mail
+          informado.</p>
+        <div class="back-btns">
+          <a href="index.html" class="btn-primary" data-i18n="contato.success.backHome">Voltar ao início</a>
+          <a href="plugin.html" class="btn-secondary" data-i18n="contato.success.knowPlugin">Conhecer o plugin</a>
+        </div>
+      </div>
+
+      <p class="auth-foot" id="contact-foot" data-i18n="contato.foot">Seus dados são usados apenas para este contato.</p>
+    </section>
+  </main>
+
+  <!-- i18n primeiro: expõe window.H2SI18n para o script de contato abaixo -->
+  <script src="js/i18n.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var TOKEN_KEY = 'h2s_token';
+      var USER_KEY = 'h2s_user';
+
+      // ── Guard de login: precisa estar logado para usar o formulário ──
+      var token = null, sessionUser = null;
+      try {
+        token = localStorage.getItem(TOKEN_KEY);
+        sessionUser = JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+      } catch (e) { /* sem sessão */ }
+      if (!token) {
+        var here = 'contato.html' + window.location.search;
+        window.location.replace('login.html?next=' + encodeURIComponent(here));
+        return;
+      }
+      var email = (sessionUser && sessionUser.email) || '';
+
+      // ── Read subject ──
+      var assunto = '';
+      try { assunto = new URLSearchParams(window.location.search).get('assunto') || ''; } catch (e) {}
+
+      // Instead of hardcoded strings, pick the i18n key NAMESPACE for the chosen
+      // subject and point each element's data-i18n at it. i18n.js then fills the
+      // right language now AND re-fills automatically on any live language change.
+      var ns = (assunto === 'comercial' || assunto === 'diagnostico') ? assunto : 'default';
+      function setKey(id, attr, key) {
+        var el = document.getElementById(id);
+        if (el) el.setAttribute(attr, key);
+      }
+      setKey('contact-eyebrow', 'data-i18n', 'contato.' + ns + '.eyebrow');
+      setKey('contact-title', 'data-i18n', 'contato.' + ns + '.title');
+      setKey('contact-sub', 'data-i18n', 'contato.' + ns + '.sub');
+      setKey('c-message-label', 'data-i18n', 'contato.' + ns + '.msgLabel');
+      setKey('c-message', 'data-i18n-attr', 'placeholder:contato.' + ns + '.msgPlaceholder');
+      setKey('success-title', 'data-i18n', 'contato.' + ns + '.successTitle');
+      setKey('success-text', 'data-i18n', 'contato.' + ns + '.successText');
+      var titleEl = document.querySelector('title');
+      if (titleEl) titleEl.setAttribute('data-i18n', 'contato.' + ns + '.pageTitle');
+      if (window.H2SI18n) window.H2SI18n.apply(document);
+
+      // ── Pré-preenche com os dados do usuário logado ──
+      if (sessionUser && sessionUser.name) {
+        document.getElementById('c-name').value = sessionUser.name;
+      }
+      if (email) document.getElementById('c-email').value = email;
+
+      // ── Submit: envia ao backend (/api/contact); localStorage é fallback ──
+      // Mesma detecção de ambiente do auth-client.js.
+      var API = (window.H2S_API_BASE || (
+        /^(localhost|127\.0\.0\.1|)$/.test(location.hostname)
+          ? 'http://127.0.0.1:8000'
+          : 'https://SEU-BACKEND.up.railway.app'
+      )).replace(/\/+$/, '');
+
+      function showSuccess() {
+        document.getElementById('contact-form-wrap').classList.add('auth-hidden');
+        document.getElementById('contact-foot').classList.add('auth-hidden');
+        document.getElementById('contact-success').classList.remove('auth-hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function saveLocal(payload) {
+        // Guarda localmente quando o backend está fora (nada se perde).
+        try {
+          var key = 'h2s_contact_requests';
+          var list = JSON.parse(localStorage.getItem(key)) || [];
+          list.push(payload);
+          localStorage.setItem(key, JSON.stringify(list));
+        } catch (err) {}
+      }
+
+      document.getElementById('contact-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var msg = document.getElementById('c-msg');
+        var submitBtn = document.getElementById('c-submit');
+        var name = document.getElementById('c-name').value.trim();
+        var mail = document.getElementById('c-email').value.trim();
+        var company = document.getElementById('c-company').value.trim();
+        if (!name || !mail || !company) {
+          msg.className = 'auth-msg error';
+          msg.textContent = (window.H2SI18n ? window.H2SI18n.t('contato.form.errRequired') : 'Preencha nome, e-mail e empresa/site.');
+          return;
+        }
+        var payload = {
+          name: name, email: mail, company: company,
+          phone: document.getElementById('c-phone').value.trim() || null,
+          subject: assunto || 'geral',
+          message: document.getElementById('c-message').value.trim() || null
+        };
+        msg.className = 'auth-msg';
+        msg.textContent = '';
+        submitBtn.disabled = true;
+
+        fetch(API + '/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (res.status === 429) {
+            return res.json().then(function (body) {
+              throw { rateLimited: true, detail: body && body.detail };
+            });
+          }
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        }).then(function (body) {
+          if (!body.delivered) saveLocal(Object.assign({ at: new Date().toISOString() }, payload));
+          showSuccess();
+        }).catch(function (err) {
+          submitBtn.disabled = false;
+          if (err && err.rateLimited) {
+            msg.className = 'auth-msg error';
+            msg.textContent = err.detail || 'Muitos envios. Tente novamente em alguns minutos.';
+            return;
+          }
+          // Backend inacessível: não perde o pedido — guarda local e confirma.
+          saveLocal(Object.assign({ at: new Date().toISOString() }, payload));
+          showSuccess();
+        });
+      });
+    })();
+  </script>
+  <!-- GSAP -->
+  <!-- Bibliotecas (carregadas uma única vez) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Scripts do site -->
+  <script src="js/script.js"></script>
+  <script src="js/particle-wave.js"></script>
+  <script src="js/auth-nav.js"></script>
+
+  <!-- Help2See 3.0 (plugin carregado uma única vez, init com guarda) -->
+  <script src="js/help.js"></script>
+  <script>
+    (function () {
+      function bootHelp2See() {
+        if (window.Help2See && !window.__h2sBooted) {
+          window.__h2sBooted = true;
+          Help2See.init(); // idempotent + SPA-safe
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootHelp2See, { once: true });
+      } else { bootHelp2See(); }
+    })();
+  </script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+</body>
+
+</html>

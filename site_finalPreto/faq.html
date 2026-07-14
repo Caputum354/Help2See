@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="faq.title">Perguntas Frequentes — Help2See</title>
+  <meta name="description"
+    content="Tire suas dúvidas sobre o Help2See: planos, instalação, performance, SEO e cancelamento da plataforma de acessibilidade digital.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="faq">
+
+  <!-- Global background light effects -->
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light bg-light-1"></div>
+    <div class="bg-light bg-light-2"></div>
+    <div class="bg-light bg-light-3"></div>
+    <div class="bg-light bg-light-4"></div>
+  </div>
+
+  <a href="#main-content" class="skip-link" data-i18n="common.skip">Ir para conteúdo principal</a>
+
+  <!-- ── NAV ── -->
+  <nav role="navigation" aria-label="Navegação principal" data-i18n-attr="aria-label:nav.mainAria">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial" data-i18n-attr="aria-label:nav.logoAria">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#como-funciona" data-i18n="nav.howItWorks">Como funciona</a></li>
+      <li><a href="index.html#empresas" data-i18n="nav.companies">Empresas</a></li>
+      <li><a href="index.html#usuarios" data-i18n="nav.users">Usuários</a></li>
+      <li><a href="sobre.html" data-i18n="nav.about">Sobre nós</a></li>
+      <li><a href="precos.html" data-i18n="nav.plans">Planos</a></li>
+      <li><a href="faq.html" class="active" aria-current="page" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="plugin.html" data-i18n="nav.plugin">O Plugin</a></li>
+      <li><a href="login.html" class="nav-cta" data-i18n="nav.login">Entrar</a></li>
+      <li class="nav-lang">
+        <select class="js-lang-select" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+          <option value="pt">Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </li>
+    </ul>
+
+    <button class="nav-hamburger" aria-label="Abrir menu" aria-expanded="false" data-i18n-attr="aria-label:nav.openMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" role="dialog" aria-label="Menu de navegação" data-i18n-attr="aria-label:nav.mobileAria">
+    <a href="index.html#como-funciona" data-i18n="nav.howItWorks">Como funciona</a>
+    <a href="index.html#empresas" data-i18n="nav.companies">Empresas</a>
+    <a href="index.html#usuarios" data-i18n="nav.users">Usuários</a>
+    <a href="sobre.html" data-i18n="nav.about">Sobre nós</a>
+    <a href="precos.html" data-i18n="nav.plans">Planos</a>
+    <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+    <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+    <a href="login.html" class="mobile-cta" data-i18n="nav.login">Entrar</a>
+    <select class="js-lang-select mobile-lang" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+      <option value="pt">Português</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+    </select>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     MAIN
+══════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ── FAQ HERO ── -->
+    <section class="faq-hero" aria-labelledby="faq-hero-heading">
+      <div class="faq-hero-glow" aria-hidden="true"></div>
+      <div class="faq-hero-glow2" aria-hidden="true"></div>
+
+      <p class="section-eyebrow" data-i18n="faq.hero.eyebrow">Perguntas frequentes</p>
+
+      <h1 class="faq-hero-title" id="faq-hero-heading" data-i18n-html="faq.hero.title">
+        Ainda tem <em>dúvidas?</em>
+      </h1>
+
+      <p class="faq-hero-sub" data-i18n-html="faq.hero.sub">
+        Reunimos as perguntas mais comuns sobre o Help2See. <strong>Não achou o que procurava?</strong>
+        Fale com a nossa equipe — respondemos em até 1 dia útil.
+      </p>
+    </section>
+
+    <!-- ── FAQ LIST ── -->
+    <section class="faq-section" aria-label="Lista de perguntas frequentes" data-i18n-attr="aria-label:faq.listAria">
+
+      <div class="faq-grid" role="list" aria-label="Perguntas e respostas frequentes" data-i18n-attr="aria-label:faq.gridAria">
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            <span class="faq-question-text" data-i18n="faq.q1">O plano gratuito tem limite de tempo?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p data-i18n="faq.a1">Não. O plano gratuito é permanente e não expira. Você usa a leitura de tela básica e descreve até 50
+              imagens por mês sem pagar nada e sem informar cartão de crédito.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            <span class="faq-question-text" data-i18n="faq.q2">Preciso de conhecimento técnico para instalar?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p data-i18n="faq.a2">Não. Basta colar uma linha de código antes do fechamento do &lt;/body&gt; — qualquer pessoa com acesso ao
+              painel do CMS consegue. Se preferir, a consultoria faz tudo para você.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            <span class="faq-question-text" data-i18n="faq.q3">O plugin impacta a performance e o SEO?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p data-i18n="faq.a3">Não. O script carrega de forma assíncrona e pesa menos de 8 KB comprimido. O alt text gerado pela IA ainda
+              beneficia o SEO, preenchendo descrições de imagem que o Google usa para indexar.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            <span class="faq-question-text" data-i18n="faq.q4">Posso cancelar a qualquer momento?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p data-i18n="faq.a4">Sim, sem multa ou fidelidade. O cancelamento é feito pelo painel com efeito no próximo ciclo, e o plugin
+              continua ativo até o fim do período já pago.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── FAQ CTA ── -->
+    <section class="faq-cta-section" aria-labelledby="faq-cta-heading">
+      <div class="faq-cta-card">
+        <h2 id="faq-cta-heading" data-i18n-html="faq.cta.title">Não encontrou sua <em>resposta?</em></h2>
+        <p data-i18n="faq.cta.sub">Nossa equipe responde em até 1 dia útil e ajuda você a entender como o Help2See se encaixa no seu site.</p>
+        <div class="faq-cta-btns">
+          <a href="contato.html?assunto=comercial" class="btn-primary" role="button" data-i18n="faq.cta.primary">Falar com a equipe</a>
+          <a href="login.html" class="btn-secondary" role="button" data-i18n="faq.cta.secondary">Entrar / Criar conta</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer role="contentinfo">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0">
+          <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" style="height:28px" />
+        </a>
+        <p data-i18n="footer.brandDesc">Tornando a internet acessível para todos os brasileiros, uma página por vez.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.product">Produto</h5>
+        <a href="index.html#como-funciona" data-i18n="nav.howItWorks">Como funciona</a>
+        <a href="index.html#usuarios" data-i18n="footer.forUsers">Para usuários</a>
+        <a href="index.html#empresas" data-i18n="footer.forCompanies">Para empresas</a>
+        <a href="precos.html" data-i18n="footer.plansPrices">Planos e preços</a>
+        <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.company">Empresa</h5>
+        <a href="sobre.html" data-i18n="nav.about">Sobre nós</a>
+        <a href="#" data-i18n="footer.blog">Blog</a>
+        <a href="#" data-i18n="footer.press">Imprensa</a>
+        <a href="#" data-i18n="footer.careers">Carreiras</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.support">Suporte</h5>
+        <a href="faq.html" data-i18n="footer.faqLink">Dúvidas frequentes</a>
+        <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+        <a href="#" data-i18n="footer.docs">Documentação</a>
+        <a href="contato.html" data-i18n="footer.contact">Contato</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><span data-i18n="footer.copyrightPre">© 2025 Help2See. Feito com</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="#D3DC2A" stroke="none"
+          aria-hidden="true">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg> <span data-i18n="footer.copyrightPost">para a acessibilidade digital.</span></p>
+      <p><a href="#" data-i18n="footer.privacy">Privacidade</a> &nbsp;·&nbsp; <a href="#" data-i18n="footer.terms">Termos</a></p>
+    </div>
+  </footer>
+
+  <!-- Bibliotecas (carregadas uma única vez) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Scripts do site (i18n primeiro) -->
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/particle-wave.js"></script>
+  <script src="js/auth-nav.js"></script>
+
+  <!-- Help2See 3.0 (plugin carregado uma única vez, init com guarda) -->
+  <script src="js/help.js"></script>
+  <script>
+    (function () {
+      function bootHelp2See() {
+        if (window.Help2See && !window.__h2sBooted) {
+          window.__h2sBooted = true;
+          Help2See.init(); // idempotent + SPA-safe
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootHelp2See, { once: true });
+      } else { bootHelp2See(); }
+    })();
+  </script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+</body>
+
+</html>

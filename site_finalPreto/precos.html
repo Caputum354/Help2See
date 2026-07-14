@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="precos.title">Planos e Preços — Help2See</title>
+  <meta name="description"
+    content="Escolha o plano ideal para você ou sua empresa. Plano gratuito, assinatura mensal e consultoria com instalação incluída — sem recorrência.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/precos.css">
+</head>
+
+<body data-page="pricing">
+
+  <!-- Global background light effects -->
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light bg-light-1"></div>
+    <div class="bg-light bg-light-2"></div>
+    <div class="bg-light bg-light-3"></div>
+    <div class="bg-light bg-light-4"></div>
+  </div>
+  <a href="#main-content" class="skip-link" data-i18n="common.skip">Ir para conteúdo principal</a>
+
+  <!-- ── NAV ── -->
+  <nav role="navigation" aria-label="Navegação principal" data-i18n-attr="aria-label:nav.mainAria">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial" data-i18n-attr="aria-label:nav.logoAria">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#como-funciona" data-i18n="nav.howItWorks">Como funciona</a></li>
+      <li><a href="index.html#empresas" data-i18n="nav.companies">Empresas</a></li>
+      <li><a href="index.html#usuarios" data-i18n="nav.users">Usuários</a></li>
+      <li><a href="sobre.html" data-i18n="nav.about">Sobre nós</a></li>
+      <li><a href="precos.html" class="nav-active" aria-current="page" data-i18n="nav.plans">Planos</a></li>
+      <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="plugin.html" data-i18n="nav.plugin">O Plugin</a></li>
+      <li><a href="login.html" class="nav-cta" data-i18n="nav.login">Entrar</a></li>
+      <li class="nav-lang">
+        <select class="js-lang-select" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+          <option value="pt">Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </li>
+    </ul>
+
+    <button class="nav-hamburger" aria-label="Abrir menu" aria-expanded="false" data-i18n-attr="aria-label:nav.openMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" role="dialog" aria-label="Menu de navegação" data-i18n-attr="aria-label:nav.mobileAria">
+    <a href="index.html#como-funciona" data-i18n="nav.howItWorks">Como funciona</a>
+    <a href="index.html#empresas" data-i18n="nav.companies">Empresas</a>
+    <a href="index.html#usuarios" data-i18n="nav.users">Usuários</a>
+    <a href="sobre.html" data-i18n="nav.about">Sobre nós</a>
+    <a href="precos.html" data-i18n="nav.plans">Planos</a>
+    <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+    <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+    <a href="login.html" class="mobile-cta" data-i18n="nav.login">Entrar</a>
+    <select class="js-lang-select mobile-lang" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+      <option value="pt">Português</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+    </select>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ── PRICING HERO ── -->
+    <section class="pricing-hero" aria-labelledby="pricing-heading">
+      <p class="section-eyebrow" data-i18n="precos.hero.eyebrow">Planos e Preços</p>
+      <h1 id="pricing-heading" data-i18n-html="precos.hero.title">Escolha o seu caminho<br>para a <em>acessibilidade.</em></h1>
+      <p data-i18n="precos.hero.sub">Do gratuito ao corporativo — cada plano foi pensado para um momento específico. Sem taxas ocultas, sem letras
+        miúdas.</p>
+
+      <!-- Billing toggle -->
+      <div class="billing-toggle" role="group" aria-label="Período de cobrança" data-i18n-attr="aria-label:precos.billing.aria">
+        <span class="toggle-label active" id="label-monthly" data-i18n="precos.billing.monthly">Mensal</span>
+        <button class="toggle-switch" id="billing-toggle" aria-pressed="false"
+          aria-label="Alternar para plano anual" data-i18n-attr="aria-label:precos.billing.switchAria"></button>
+        <span class="toggle-label" id="label-annual" data-i18n="precos.billing.annual">Anual</span>
+        <span class="toggle-badge">-20%</span>
+      </div>
+    </section>
+
+    <!-- ── PLANS GRID ── -->
+    <section class="plans-section" aria-labelledby="plans-title">
+      <h2 class="sr-only" id="plans-title" data-i18n="precos.plansTitle">Planos disponíveis</h2>
+
+      <div class="plans-grid-full">
+
+        <!-- FREE -->
+        <div class="plan-card-full mix-blue" role="article" aria-label="Plano Usuário Gratuito" data-i18n-attr="aria-label:precos.free.aria">
+          <p class="plan-name" data-i18n="precos.free.name">Gratuito</p>
+          <p class="plan-title" data-i18n="precos.free.title">Usuário</p>
+          <p class="plan-desc" data-i18n="precos.free.desc">Para pessoas com deficiência visual que desejam navegar com mais autonomia em qualquer
+            site.</p>
+          <div class="plan-divider"></div>
+          <div class="plan-price-block">
+            <div class="plan-price-big"><sup>R$</sup>0</div>
+            <p class="plan-price-note" data-i18n="precos.free.priceNote">Para sempre gratuito</p>
+          </div>
+          <ul class="plan-features-full" role="list">
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.free.f1">Leitura de tela básica com IA</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n-html="precos.free.f2">Descrição de até <strong>50 imagens/mês</strong></span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.free.f3">Alto contraste e ajuste de fonte</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.free.f4">Navegação por teclado aprimorada</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.free.f5">Compatível com JAWS, NVDA e Orca</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.free.f6">Suporte por email (tempo de resposta padrão)</span></li>
+          </ul>
+          <a href="login.html" class="plan-btn-full btn-free" role="button" id="free-cta" data-i18n="precos.free.cta">Começar grátis</a>
+        </div>
+
+        <!-- PRO -->
+        <div class="plan-card-full featured mix-dark" role="article" aria-label="Plano Profissional — destaque" data-i18n-attr="aria-label:precos.pro.aria">
+          <span class="plan-badge" aria-label="Plano mais popular" data-i18n="precos.pro.badge" data-i18n-attr="aria-label:precos.pro.badgeAria">Popular</span>
+          <p class="plan-name" data-i18n="precos.pro.name">Profissional</p>
+          <p class="plan-title" data-i18n="precos.pro.title">Por site</p>
+          <p class="plan-desc" data-i18n="precos.pro.desc">Para empresas que precisam de conformidade WCAG e alcance total de usuários com
+            deficiência.</p>
+          <div class="plan-divider"></div>
+          <div class="plan-price-block">
+            <div class="plan-price-big" id="pro-price"><sup>R$</sup>49</div>
+            <p class="plan-price-note" id="pro-period" data-i18n="precos.pro.period">por mês, por site</p>
+          </div>
+          <ul class="plan-features-full" role="list">
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.pro.f1">Tudo do plano gratuito</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n-html="precos.pro.f2"><strong>Imagens ilimitadas</strong> com visão
+              computacional</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.pro.f3">Relatório de conformidade WCAG automático</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.pro.f4">Voz neural premium em PT-BR</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.pro.f5">Certificado de acessibilidade digital</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.pro.f6">Monitoramento 24/7 de regressões</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.pro.f7">Suporte prioritário com SLA garantido</span></li>
+            <li class="feature-section-label" data-i18n="precos.pro.legalLabel">Conformidade Legal</li>
+            <li><span class="check check-purple" aria-hidden="true">✓</span> <span data-i18n="precos.pro.f8">Laudo técnico de acessibilidade</span></li>
+            <li><span class="check check-purple" aria-hidden="true">✓</span> <span data-i18n="precos.pro.f9">Compatível com eMAG e WCAG 2.1 AA/AAA</span></li>
+            <li><span class="check check-purple" aria-hidden="true">✓</span> <span data-i18n="precos.pro.f10">Dashboard de conformidade em tempo real</span>
+            </li>
+          </ul>
+          <a href="#" class="plan-btn-full btn-pro" role="button" id="pro-cta" data-i18n="precos.pro.cta">Assinar agora</a>
+        </div>
+
+        <!-- ENTERPRISE -->
+        <div class="plan-card-full" role="article" aria-label="Plano Corporativo" data-i18n-attr="aria-label:precos.ent.aria">
+          <p class="plan-name" data-i18n="precos.ent.name">Corporativo</p>
+          <p class="plan-title" data-i18n="precos.ent.title">Enterprise</p>
+          <p class="plan-desc" data-i18n="precos.ent.desc">Para redes, agências e grupos com múltiplos domínios que precisam de gestão centralizada
+            e SLA enterprise.</p>
+          <div class="plan-divider"></div>
+          <div class="plan-price-block">
+            <div class="plan-price-big" style="font-size: 40.3px; line-height: 1.2;" data-i18n-html="precos.ent.price">Sob<br>consulta</div>
+            <p class="plan-price-note" data-i18n="precos.ent.priceNote">Valor por volume de sites</p>
+          </div>
+          <ul class="plan-features-full" role="list">
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.ent.f1">Tudo do plano Profissional</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n-html="precos.ent.f2"><strong>Sites ilimitados</strong> sob um contrato</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.ent.f3">SSO e integração com IdP corporativo</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.ent.f4">Gerente de conta dedicado</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.ent.f5">Treinamento para equipes de TI</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.ent.f6">Deploy em ambiente on-premise ou cloud privada</span></li>
+            <li><span class="check" aria-hidden="true">✓</span> <span data-i18n="precos.ent.f7">SLA 99.9% com suporte 24/7 via telefone</span></li>
+            <li class="feature-section-label" data-i18n="precos.ent.reportsLabel">Relatórios e Auditoria</li>
+            <li><span class="check check-purple" aria-hidden="true">✓</span> <span data-i18n="precos.ent.f8">Relatórios customizados para diretoria</span></li>
+            <li><span class="check check-purple" aria-hidden="true">✓</span> <span data-i18n="precos.ent.f9">API de auditoria para sistemas internos</span>
+            </li>
+            <li><span class="check check-purple" aria-hidden="true">✓</span> <span data-i18n="precos.ent.f10">NDA e contrato personalizado</span></li>
+          </ul>
+          <a href="contato.html?assunto=comercial" class="plan-btn-full btn-free" role="button" data-i18n="precos.ent.cta">Falar com
+            comercial</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONSULTING SECTION ── -->
+    <section class="consulting-section" id="consultoria" aria-labelledby="consulting-heading">
+      <div class="consulting-inner">
+        <div class="consulting-header">
+          <div class="consulting-badge" aria-label="Novidade: consultoria com instalação" data-i18n-attr="aria-label:precos.consulting.badgeAria">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+            <span data-i18n="precos.consulting.badge">Sem assinatura mensal</span>
+          </div>
+          <p class="section-eyebrow" data-i18n="precos.consulting.eyebrow">Consultoria</p>
+          <h2 class="section-title" id="consulting-heading" style="margin: 0 auto;" data-i18n-html="precos.consulting.title">Nós instalamos. <em>Você só
+              aprova.</em></h2>
+          <p class="section-sub" style="margin: 16px auto 0; max-width: 580px;" data-i18n="precos.consulting.sub">Para quem não quer se preocupar com
+            código. Nossa equipe configura, instala e entrega o plugin funcionando — pagamento único, sem mensalidade.
+          </p>
+        </div>
+
+        <div class="consulting-grid">
+
+          <!-- CONSULTING CARD -->
+          <div class="consulting-card" role="article" aria-label="Pacote de consultoria com instalação" data-i18n-attr="aria-label:precos.consulting.cardAria">
+            <div class="consulting-price-block">
+              <p class="consulting-price-label" data-i18n="precos.consulting.priceLabel">Consultoria + Instalação</p>
+              <div class="consulting-price-big"><sup>R$</sup>200</div>
+              <p class="consulting-price-note" data-i18n="precos.consulting.priceNote">pagamento único — sem recorrência</p>
+            </div>
+
+            <p class="consulting-desc" data-i18n="precos.consulting.desc">
+              Um especialista Help2See configura, instala e valida o plugin no seu site. Você recebe o relatório de
+              conformidade WCAG, o certificado de acessibilidade e 30 dias de suporte incluso.
+            </p>
+
+            <ol class="consulting-steps" aria-label="Etapas da consultoria" data-i18n-attr="aria-label:precos.consulting.stepsAria">
+              <li>
+                <span class="step-num" aria-hidden="true">1</span>
+                <span data-i18n-html="precos.consulting.step1"><strong>Diagnóstico gratuito:</strong> análise automática do seu site com relatório de barreiras
+                  de acessibilidade antes de qualquer pagamento.</span>
+              </li>
+              <li>
+                <span class="step-num" aria-hidden="true">2</span>
+                <span data-i18n-html="precos.consulting.step2"><strong>Instalação supervisionada:</strong> nosso técnico acessa o painel do seu CMS e realiza
+                  toda a configuração do plugin com você.</span>
+              </li>
+              <li>
+                <span class="step-num" aria-hidden="true">3</span>
+                <span data-i18n-html="precos.consulting.step3"><strong>Validação WCAG:</strong> verificação funcional em tempo real com leitor de tela e
+                  relatório final de conformidade.</span>
+              </li>
+              <li>
+                <span class="step-num" aria-hidden="true">4</span>
+                <span data-i18n-html="precos.consulting.step4"><strong>Entrega e documentação:</strong> receba o certificado, laudo técnico e guia de manutenção
+                  em PDF.</span>
+              </li>
+            </ol>
+
+            <a href="contato.html?assunto=diagnostico"
+              class="plan-btn-full btn-consulting" role="button" data-i18n="precos.consulting.cta">
+              Solicitar diagnóstico gratuito
+            </a>
+
+            <p style="font-size:13.4px; color:var(--gray); text-align:center; margin-top:16px;" data-i18n="precos.consulting.note">
+              Diagnóstico sem compromisso · Resposta em até 24h
+            </p>
+          </div>
+
+          <!-- HIGHLIGHTS -->
+          <div class="consulting-highlights" role="list" aria-label="Vantagens da consultoria" data-i18n-attr="aria-label:precos.consulting.highlightsAria">
+            <div class="consulting-highlight-item" role="listitem">
+              <div class="consulting-highlight-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9490E8" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                  <path d="M16 3.13a4 4 0 010 7.75" />
+                </svg>
+              </div>
+              <div>
+                <h4 data-i18n="precos.consulting.h1.title">Para qualquer CMS ou plataforma</h4>
+                <p data-i18n="precos.consulting.h1.text">Seja WordPress, Webflow, VTEX, Shopify, Wix, site HTML ou sistema customizado — nossa equipe já
+                  instalou em mais de 40 plataformas diferentes.</p>
+              </div>
+            </div>
+
+            <div class="consulting-highlight-item" role="listitem">
+              <div class="consulting-highlight-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9490E8" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </div>
+              <div>
+                <h4 data-i18n="precos.consulting.h2.title">Certificado para uso jurídico</h4>
+                <p data-i18n="precos.consulting.h2.text">O laudo técnico entregue ao final da consultoria é aceito como comprovação de conformidade em
+                  processos administrativos e defesas de ação civil por inacessibilidade digital.</p>
+              </div>
+            </div>
+
+            <div class="consulting-highlight-item" role="listitem">
+              <div class="consulting-highlight-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9490E8" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div>
+                <h4 data-i18n="precos.consulting.h3.title">30 dias de suporte pós-instalação</h4>
+                <p data-i18n="precos.consulting.h3.text">Após a entrega, nossa equipe permanece disponível por email e chat durante 30 dias para ajustar
+                  configurações, resolver dúvidas e garantir que tudo funcione corretamente.</p>
+              </div>
+            </div>
+
+            <div class="consulting-highlight-item" role="listitem">
+              <div class="consulting-highlight-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9490E8" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                </svg>
+              </div>
+              <div>
+                <h4 data-i18n="precos.consulting.h4.title">Sem assinatura, sem recorrência</h4>
+                <p data-i18n="precos.consulting.h4.text">Pagamento único de R$ 890. Nenhuma cobrança futura obrigatória. Caso queira manter o monitoramento
+                  ativo após 30 dias, oferecemos o plano Profissional com desconto de 20% para clientes de consultoria.
+                </p>
+              </div>
+            </div>
+
+            <div class="consulting-highlight-item" role="listitem">
+              <div class="consulting-highlight-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9490E8" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
+              <div>
+                <h4 data-i18n="precos.consulting.h5.title">Diagnóstico pré-compra gratuito</h4>
+                <p data-i18n="precos.consulting.h5.text">Antes de fechar qualquer contrato, geramos um relatório completo de barreiras de acessibilidade do
+                  seu site sem custo. Só prosseguimos se você quiser.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA BAND ── -->
+    <section class="cta-band" aria-labelledby="cta-heading">
+      <h2 id="cta-heading" data-i18n-html="precos.cta.title">Pronto para tornar seu site <em>acessível?</em></h2>
+      <p data-i18n="precos.cta.sub">Comece gratuitamente hoje — ou agende um diagnóstico e nós instalamos para você.</p>
+      <div class="cta-band-btns">
+        <a href="login.html" class="btn-primary" role="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <span data-i18n="precos.cta.primary">Começar grátis agora</span>
+        </a>
+        <a href="contato.html?assunto=diagnostico" class="btn-secondary" role="button">
+          <span data-i18n="precos.cta.secondary">Solicitar consultoria</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer role="contentinfo">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0">
+          <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" style="height:28px" />
+        </a>
+        <p data-i18n="footer.brandDesc">Tornando a internet acessível para todos os brasileiros, uma página por vez.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.product">Produto</h5>
+        <a href="index.html#como-funciona" data-i18n="nav.howItWorks">Como funciona</a>
+        <a href="index.html#usuarios" data-i18n="footer.forUsers">Para usuários</a>
+        <a href="index.html#empresas" data-i18n="footer.forCompanies">Para empresas</a>
+        <a href="precos.html" data-i18n="footer.plansPrices">Planos e preços</a>
+        <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.company">Empresa</h5>
+        <a href="sobre.html" data-i18n="nav.about">Sobre nós</a>
+        <a href="#" data-i18n="footer.blog">Blog</a>
+        <a href="#" data-i18n="footer.press">Imprensa</a>
+        <a href="#" data-i18n="footer.careers">Carreiras</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.support">Suporte</h5>
+        <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+        <a href="#" data-i18n="footer.docs">Documentação</a>
+        <a href="#" data-i18n="footer.status">Status</a>
+        <a href="contato.html" data-i18n="footer.contact">Contato</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><span data-i18n="footer.copyrightPre">© 2025 Help2See. Feito com</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="#D3DC2A" stroke="none"
+          aria-hidden="true">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg> <span data-i18n="footer.copyrightPost">para a acessibilidade digital brasileira.</span></p>
+      <p><a href="#" data-i18n="footer.privacy">Privacidade</a> &nbsp;·&nbsp; <a href="#" data-i18n="footer.terms">Termos</a></p>
+    </div>
+  </footer>
+
+    <!-- Bibliotecas (carregadas uma única vez) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Scripts do site (i18n primeiro: expõe window.H2SI18n) -->
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/particle-wave.js"></script>
+  <script src="js/auth-client.js"></script>
+  <script src="js/auth-nav.js"></script>
+  <script>
+    // Localization helper — i18n.js is loaded above, so window.H2SI18n exists.
+    // Falls back to returning the key if (unexpectedly) unavailable.
+    const T = (window.H2SI18n && window.H2SI18n.t) ? window.H2SI18n.t : function (k) { return k; };
+
+    // ── BILLING TOGGLE ──
+    const toggle = document.getElementById('billing-toggle');
+    const proPrice = document.getElementById('pro-price');
+    const proPeriod = document.getElementById('pro-period');
+    const proCTA = document.getElementById('pro-cta');
+    const labelMonthly = document.getElementById('label-monthly');
+    const labelAnnual = document.getElementById('label-annual');
+
+    let isAnnual = false;
+
+    toggle.addEventListener('click', () => {
+      isAnnual = !isAnnual;
+      toggle.classList.toggle('on', isAnnual);
+      toggle.setAttribute('aria-pressed', isAnnual);
+
+      labelMonthly.classList.toggle('active', !isAnnual);
+      labelAnnual.classList.toggle('active', isAnnual);
+
+      if (isAnnual) {
+        proPrice.innerHTML = '<sup>R$</sup>39';
+        proPeriod.textContent = T('precos.pro.periodAnnual');
+        proCTA.textContent = T('precos.pro.ctaAnnual');
+      } else {
+        proPrice.innerHTML = '<sup>R$</sup>49';
+        proPeriod.textContent = T('precos.pro.period');
+        proCTA.textContent = T('precos.pro.cta');
+      }
+    });
+
+    // ── CHECKOUT — plano Profissional (Mercado Pago) ──
+    // Logado: cria a preference e redireciona ao Checkout Pro. Não logado: manda
+    // ao login, que retoma o checkout no retorno (?next + cycle).
+    if (proCTA) {
+      proCTA.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        var cycle = isAnnual ? 'annual' : 'monthly';
+        var auth = window.h2sAuth;
+        if (!auth || !auth.isLoggedIn()) {
+          window.location.href = 'login.html?next=' +
+            encodeURIComponent('precos.html') + '&cycle=' + cycle;
+          return;
+        }
+        var original = proCTA.textContent;
+        proCTA.textContent = T('precos.pro.redirecting');
+        proCTA.setAttribute('aria-busy', 'true');
+        auth.startCheckout(cycle).then(function (res) {
+          if (res.ok && res.data && res.data.init_point) {
+            window.location.href = res.data.init_point;
+            return;
+          }
+          proCTA.textContent = original;
+          proCTA.removeAttribute('aria-busy');
+          alert((auth.errorMessage && auth.errorMessage(res)) ||
+            T('precos.checkout.errStart'));
+        }).catch(function () {
+          proCTA.textContent = original;
+          proCTA.removeAttribute('aria-busy');
+          alert(T('precos.checkout.errConn'));
+        });
+      });
+    }
+
+    // ── FAQ ACCORDION ──
+    function toggleFAQ(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Fecha todos
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+
+      // Abre o clicado (se estava fechado)
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // ── COPY CODE ──
+    function copyCode(btn) {
+      const code = `<script
+  src="https://cdn.help2see.com.br/v2/plugin.min.js"
+  data-key="SUA_CHAVE_AQUI"
+  data-lang="pt-BR"
+  defer
+><\/script>`;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = T('common.copied');
+        btn.style.borderColor = 'var(--yellow)';
+        btn.style.color = 'var(--yellow)';
+        setTimeout(() => {
+          btn.textContent = T('common.copy');
+          btn.style.borderColor = '';
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+
+    // ── GSAP PAGE ANIMATIONS ──
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('.pricing-hero h1', { opacity: 0, y: 40, duration: 0.9, ease: 'power3.out', delay: 0.2 });
+    gsap.from('.pricing-hero p', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out', delay: 0.4 });
+    gsap.from('.billing-toggle', { opacity: 0, y: 20, duration: 0.7, ease: 'power3.out', delay: 0.6 });
+
+    gsap.utils.toArray('.plan-card-full').forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: { trigger: card, start: 'top 88%' },
+        opacity: 0, y: 50, duration: 0.7, ease: 'power3.out', delay: i * 0.1
+      });
+    });
+
+    gsap.utils.toArray('.plugin-spec-item').forEach((item, i) => {
+      gsap.from(item, {
+        scrollTrigger: { trigger: item, start: 'top 90%' },
+        opacity: 0, x: -30, duration: 0.6, ease: 'power3.out', delay: i * 0.08
+      });
+    });
+
+    gsap.from('.plugin-code-card', {
+      scrollTrigger: { trigger: '.plugin-code-card', start: 'top 85%' },
+      opacity: 0, x: 40, duration: 0.8, ease: 'power3.out'
+    });
+
+    gsap.from('.consulting-card', {
+      scrollTrigger: { trigger: '.consulting-card', start: 'top 85%' },
+      opacity: 0, y: 50, duration: 0.8, ease: 'power3.out'
+    });
+
+    gsap.utils.toArray('.consulting-highlight-item').forEach((item, i) => {
+      gsap.from(item, {
+        scrollTrigger: { trigger: item, start: 'top 90%' },
+        opacity: 0, x: 30, duration: 0.6, ease: 'power3.out', delay: i * 0.08
+      });
+    });
+  </script>
+
+  <!-- Help2See 3.0 (plugin carregado uma única vez, init com guarda) -->
+  <script src="js/help.js"></script>
+  <script>
+    (function () {
+      function bootHelp2See() {
+        if (window.Help2See && !window.__h2sBooted) {
+          window.__h2sBooted = true;
+          Help2See.init(); // idempotent + SPA-safe
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootHelp2See, { once: true });
+      } else { bootHelp2See(); }
+    })();
+  </script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+</body>
+
+</html>

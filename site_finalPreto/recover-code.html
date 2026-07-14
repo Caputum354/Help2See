@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="recover.pageTitle">Código de recuperação — Help2See</title>
+  <meta name="description" content="Digite o código que enviamos por e-mail para recuperar sua conta Help2See.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body data-page="login">
+
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light bg-light-1"></div>
+    <div class="bg-light bg-light-2"></div>
+    <div class="bg-light bg-light-3"></div>
+    <div class="bg-light bg-light-4"></div>
+  </div>
+
+  <header class="auth-topbar">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+    <div class="auth-topbar-right">
+      <a href="login.html" style="color:var(--gray);text-decoration:none;font-weight:600;" data-i18n="recover.topLogin">← Ir para o login</a>
+      <select class="js-lang-select" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+        <option value="pt">Português</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <section class="auth-card" aria-labelledby="auth-title">
+      <img src="img/help2seeLogo3Escuro.png" alt="" class="auth-logo" aria-hidden="true" />
+      <h1 id="auth-title" class="auth-title" style="text-align:center;" data-i18n="recover.heading">Código de recuperação</h1>
+      <p class="auth-sub"><span data-i18n="recover.sub1">Confirme sua identidade usando o código de verificação enviado para</span>
+        <strong class="auth-email" id="code-email">seu e-mail</strong>.</p>
+      <p class="auth-sub auth-sub-sm" data-i18n="recover.expire">Ele expira em 15 minutos.</p>
+
+      <form id="form-code" novalidate>
+        <div class="auth-field">
+          <label for="code-input" data-i18n="recover.codeLabel">Código</label>
+          <input type="text" id="code-input" inputmode="numeric" autocomplete="one-time-code"
+            maxlength="6" pattern="[0-9]*" placeholder="000000" required />
+        </div>
+        <button type="submit" class="btn-primary auth-submit" data-i18n="recover.submit">Verificar código</button>
+        <p class="auth-msg" id="code-msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="auth-foot"><a href="login.html" data-i18n="recover.backLogin">Voltar ao login</a></p>
+    </section>
+  </main>
+
+  <!-- i18n primeiro (expõe window.H2SI18n) -->
+  <script src="js/i18n.js"></script>
+  <!-- Cliente de autenticação (fala com o backend FastAPI /api/auth/*) -->
+  <script src="js/auth-client.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var T = (window.H2SI18n && window.H2SI18n.t) ? window.H2SI18n.t : function (k) { return k; };
+      var msg = document.getElementById('code-msg');
+      var form = document.getElementById('form-code');
+      var input = document.getElementById('code-input');
+
+      function setMsg(type, text) { msg.className = 'auth-msg ' + type; msg.textContent = text; }
+
+      var params;
+      try { params = new URLSearchParams(window.location.search); } catch (e) { params = null; }
+
+      // E-mail: da URL ou do passo anterior (sessionStorage).
+      var email = (params && params.get('email')) || '';
+      if (!email) { try { email = sessionStorage.getItem('h2s_reset_email') || ''; } catch (e) { email = ''; } }
+
+      if (!email) {
+        setMsg('error', T('recover.noSession'));
+        form.querySelector('button[type="submit"]').disabled = true;
+        return;
+      }
+
+      // Mostra o e-mail (já resolvido acima) no texto de confirmação.
+      var emailEl = document.getElementById('code-email');
+      if (emailEl) emailEl.textContent = email;
+
+      // Modo dev (sem SMTP): o código vem na URL para teste — pré-preenche.
+      var devCode = params && params.get('dev_code');
+      if (devCode) {
+        input.value = devCode;
+        setMsg('ok', T('recover.devPrefill', { code: devCode }));
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var code = input.value.trim();
+        if (!/^\d{4,8}$/.test(code)) { setMsg('error', T('recover.invalidCode')); return; }
+
+        setMsg('', T('recover.verifying'));
+        h2sAuth.verifyCode(email, code).then(function (res) {
+          if (res.ok && res.data && res.data.exchange_token) {
+            try { sessionStorage.setItem('h2s_reset_exchange', res.data.exchange_token); } catch (err) { /* sem efeito */ }
+            setMsg('ok', T('recover.confirmed'));
+            setTimeout(function () { window.location.href = 'reset.html'; }, 800);
+          } else {
+            setMsg('error', h2sAuth.errorMessage(res, T('recover.invalidExpired')));
+          }
+        }).catch(function () {
+          setMsg('error', T('auth.errConn'));
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>

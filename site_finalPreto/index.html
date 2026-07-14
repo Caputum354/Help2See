@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="index.title">Help2See — Acessibilidade Digital com IA</title>
+  <meta name="description"
+    content="Plugin de acessibilidade com IA que lê, descreve e simplifica qualquer site. Para usuários com deficiência visual e empresas em conformidade com a lei.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="index">
+
+  <!-- Global background light effects -->
+
+  
+
+  <a href="#main-content" class="skip-link" data-i18n="common.skip">Ir para conteúdo principal</a>
+
+  <!-- ── NAV ── -->
+  <nav role="navigation" aria-label="Navegação principal" data-i18n-attr="aria-label:nav.mainAria">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial" data-i18n-attr="aria-label:nav.logoAria">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#como-funciona" data-i18n="nav.howItWorks">Como funciona</a></li>
+      <li><a href="#empresas" data-i18n="nav.companies">Empresas</a></li>
+      <li><a href="#usuarios" data-i18n="nav.users">Usuários</a></li>
+      <li><a href="sobre.html" data-i18n="nav.about">Sobre nós</a></li>
+      <li><a href="precos.html" data-i18n="nav.plans">Planos</a></li>
+      <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="plugin.html" data-i18n="nav.plugin">O Plugin</a></li>
+      <li><a href="login.html" class="nav-cta" data-i18n="nav.login">Entrar</a></li>
+      <li class="nav-lang">
+        <select class="js-lang-select" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+          <option value="pt">Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </li>
+    </ul>
+
+    <button class="nav-hamburger" aria-label="Abrir menu" aria-expanded="false" data-i18n-attr="aria-label:nav.openMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" role="dialog" aria-label="Menu de navegação" data-i18n-attr="aria-label:nav.mobileAria">
+    <a href="#como-funciona" data-i18n="nav.howItWorks">Como funciona</a>
+    <a href="#empresas" data-i18n="nav.companies">Empresas</a>
+    <a href="#usuarios" data-i18n="nav.users">Usuários</a>
+    <a href="sobre.html" data-i18n="nav.about">Sobre nós</a>
+    <a href="precos.html" data-i18n="nav.plans">Planos</a>
+    <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+    <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+    <a href="login.html" class="mobile-cta" data-i18n="nav.login">Entrar</a>
+    <select class="js-lang-select mobile-lang" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+      <option value="pt">Português</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+    </select>
+  </div>
+
+  <!-- ── HERO ── -->
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-glow2" aria-hidden="true"></div>
+      <div class="hero-glow3" aria-hidden="true"></div>
+      <div class="hero-glow4" aria-hidden="true"></div>
+      <div class="hero-beam hero-beam-1" aria-hidden="true"></div>
+      <div class="hero-beam hero-beam-2" aria-hidden="true"></div>
+      <div class="orb orb-1" aria-hidden="true"></div>
+      <div class="orb orb-2" aria-hidden="true"></div>
+      <div class="orb orb-3" aria-hidden="true"></div>
+      <div class="orb orb-4" aria-hidden="true"></div>
+      <div class="orb orb-5" aria-hidden="true"></div>
+      <div class="orb orb-6" aria-hidden="true"></div>
+
+      <p class="hero-eyebrow" aria-label="Certificado WCAG AAA e em conformidade com a Lei 13.146"
+        data-i18n-attr="aria-label:index.hero.eyebrowAria" data-i18n-html="index.hero.eyebrow">
+        WCAG AAA &nbsp;·&nbsp; Lei 13.146/2015
+      </p>
+
+      <h1 class="hero-title" id="hero-heading" data-i18n-html="index.hero.title">
+        <span class="line"><span class="line-inner">A internet foi</span></span>
+        <span class="line"><span class="line-inner">feita para <em>todos.</em></span></span>
+        <span class="line"><span class="line-inner">O Help2See <span class="accent-word"
+              data-text="garante">garante</span></span></span>
+        <span class="line"><span class="line-inner">que <em>seja.</em></span></span>
+      </h1>
+
+      <p class="hero-sub" data-i18n-html="index.hero.sub">
+        Plugin de acessibilidade com <strong>IA</strong> que lê, descreve e simplifica qualquer site.
+        Para usuários com deficiência visual. Para empresas ficarem em conformidade com a lei.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="login.html" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <span data-i18n="index.hero.ctaPrimary">Experimentar grátis</span>
+        </a>
+        <a href="#empresas" class="btn-secondary">
+          <span data-i18n="index.hero.ctaSecondary">Para empresas</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <span></span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ── STATS ── -->
+    <div class="stats" role="region" aria-label="Dados de acessibilidade digital no Brasil"
+      data-i18n-attr="aria-label:index.stats.aria">
+      <div class="stat-item">
+        <span class="stat-number" data-target="6500000" data-suffix="M+"
+          aria-label="6.5 milhões de brasileiros com deficiência visual"
+          data-i18n-attr="aria-label:index.stats.visualAria">6,5M+</span>
+        <span class="stat-label" data-i18n-html="index.stats.visual">Brasileiros com<br>deficiência visual</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="97" data-suffix="%"
+          aria-label="97% dos sites brasileiros sem acessibilidade"
+          data-i18n-attr="aria-label:index.stats.sitesAria">97%</span>
+        <span class="stat-label" data-i18n-html="index.stats.sites">Sites sem<br>acessibilidade</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="63" data-prefix="Art."
+          aria-label="Artigo 63 da Lei Brasileira de Inclusão"
+          data-i18n-attr="aria-label:index.stats.lawAria">Art.63</span>
+        <span class="stat-label" data-i18n-html="index.stats.law">Lei Brasileira<br>de Inclusão</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="10" data-suffix="x"
+          aria-label="Até 10 vezes mais alcance de mercado"
+          data-i18n-attr="aria-label:index.stats.reachAria">10×</span>
+        <span class="stat-label" data-i18n-html="index.stats.reach">Mais alcance<br>de mercado</span>
+      </div>
+    </div>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section class="how" id="como-funciona" aria-labelledby="how-heading">
+      <!-- Particle Wave Canvas (animated via JS) -->
+      <canvas class="how__particle-canvas" aria-hidden="true"></canvas>
+
+      <p class="section-eyebrow" data-i18n="index.how.eyebrow">Como funciona</p>
+      <h2 class="section-title" id="how-heading" data-i18n-html="index.how.title">Três camadas de <em>inteligência</em> acessível</h2>
+      <p class="section-sub" data-i18n="index.how.sub">Do botão ao usuário em milissegundos. Tecnologia invisível que transforma qualquer site em
+        uma experiência inclusiva.</p>
+
+      <div class="how-grid">
+        <article class="how-card mix-blue">
+          <span class="how-step" aria-hidden="true">01</span>
+          <div class="how-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="18" stroke="#D3DC2A" stroke-width="1.5" />
+              <circle cx="24" cy="24" r="8" fill="#D3DC2A" fill-opacity="0.15" />
+              <circle cx="24" cy="24" r="4" fill="#D3DC2A" />
+              <path d="M6 24h6M36 24h6M24 6v6M24 36v6" stroke="#D3DC2A" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3 data-i18n="index.how.c1.title">Leitura de Tela com IA</h3>
+          <p data-i18n="index.how.c1.text">O plugin injeta-se em qualquer página e narra o conteúdo com voz neural em português brasileiro, detectando
+            contexto semântico além das tags HTML.</p>
+        </article>
+
+        <article class="how-card">
+          <span class="how-step" aria-hidden="true">02</span>
+          <div class="how-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="14" width="32" height="22" rx="4" stroke="#6B68D1" stroke-width="1.5" />
+              <path d="M16 22h8M16 27h16" stroke="#6B68D1" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M32 22l4-4 4 4" stroke="#D3DC2A" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M36 18v8" stroke="#D3DC2A" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3 data-i18n="index.how.c2.title">Alt Text Automático</h3>
+          <p data-i18n="index.how.c2.text">Visão computacional descreve imagens sem texto alternativo em tempo real, garantindo que nenhum conteúdo
+            visual fique inacessível.</p>
+        </article>
+
+        <article class="how-card mix-dark">
+          <span class="how-step" aria-hidden="true">03</span>
+          <div class="how-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 16h24M12 24h18M12 32h12" stroke="#9490E8" stroke-width="1.5" stroke-linecap="round" />
+              <circle cx="38" cy="32" r="6" fill="#D3DC2A" fill-opacity="0.15" stroke="#D3DC2A" stroke-width="1.5" />
+              <path d="M35 32l2 2 4-4" stroke="#D3DC2A" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3 data-i18n="index.how.c3.title">Simplificação de Texto</h3>
+          <p data-i18n="index.how.c3.text">NLP reescreve jargões jurídicos, técnicos e complexos em linguagem simples e direta, facilitando a
+            compreensão para todos os níveis.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── B2B ── -->
+    <section class="b2b" id="empresas" aria-labelledby="b2b-heading">
+      <div>
+        <p class="section-eyebrow" data-i18n="index.b2b.eyebrow">Para empresas</p>
+        <h2 class="section-title" id="b2b-heading" data-i18n-html="index.b2b.title">Compliance legal com <em>vantagem</em> competitiva</h2>
+        <p class="section-sub" data-i18n="index.b2b.sub">A Lei Brasileira de Inclusão não é opcional. Mas além do risco jurídico, empresas
+          acessíveis alcançam 45 milhões de pessoas com alguma deficiência no Brasil.</p>
+
+        <div class="law-items">
+          <div class="law-item mix-blue">
+            <span class="law-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="2" x2="12" y2="18" />
+                <path d="M5 18h14" />
+                <path d="M5 9l-3 5h6z" stroke-linejoin="round" />
+                <path d="M19 9l-3 5h6z" stroke-linejoin="round" />
+                <line x1="5" y1="9" x2="19" y2="9" />
+              </svg>
+            </span>
+            <div class="law-item-text">
+              <h5 data-i18n="index.b2b.l1.title">Art. 63 — Obrigatoriedade</h5>
+              <p data-i18n="index.b2b.l1.text">Sites e aplicativos de empresas que prestam serviço ao público devem ser acessíveis. Sem exceção.</p>
+            </div>
+          </div>
+          <div class="law-item mix-dark">
+            <span class="law-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l8 3.5V10c0 5.25-3.5 9.74-8 11C7.5 19.74 4 15.25 4 10V5.5z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </span>
+            <div class="law-item-text">
+              <h5 data-i18n="index.b2b.l2.title">Responsabilidade Civil</h5>
+              <p data-i18n="index.b2b.l2.text">Barreiras digitais podem gerar ações por danos morais e multas administrativas contra a empresa.</p>
+            </div>
+          </div>
+          <div class="law-item mix-blue">
+            <span class="law-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18" />
+                <path d="M3 9h18" />
+                <path d="M5 9v12" />
+                <path d="M19 9v12" />
+                <path d="M9 9v12" />
+                <path d="M15 9v12" />
+                <path d="M12 3L3 9h18z" />
+              </svg>
+            </span>
+            <div class="law-item-text">
+              <h5 data-i18n="index.b2b.l3.title">Licitações Públicas</h5>
+              <p data-i18n="index.b2b.l3.text">eMAG e WCAG são exigidos em contratos com o setor público. Conformidade abre novos mercados.</p>
+            </div>
+          </div>
+          <div class="law-item mix-dark">
+            <span class="law-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                <polyline points="16 7 22 7 22 13" />
+              </svg>
+            </span>
+            <div class="law-item-text">
+              <h5 data-i18n="index.b2b.l4.title">ESG e Reputação</h5>
+              <p data-i18n="index.b2b.l4.text">Acessibilidade digital é critério crescente em avaliações ESG e relatórios de sustentabilidade.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="law-card mix-dark">
+          <span class="law-card-label" data-i18n="index.b2b.cardLabel">Lei 13.146/2015 — Art. 63</span>
+          <h4 data-i18n="index.b2b.cardQuote">"É obrigação das empresas garantir acessibilidade nos ambientes digitais"</h4>
+          <p data-i18n="index.b2b.cardText">O Help2See é a implementação mais rápida e eficaz para atingir conformidade WCAG 2.1 nível AA/AAA.
+            Instalação via script em uma linha. Relatório de conformidade automático. Suporte técnico dedicado para
+            equipes de TI.</p>
+
+          <div class="b2b-metrics">
+            <div class="b2b-metric">
+              <span class="b2b-metric__value" data-i18n="index.b2b.m1.value">2h</span>
+              <span class="b2b-metric__label" data-i18n="index.b2b.m1.label">Para implementar</span>
+            </div>
+            <div class="b2b-divider" aria-hidden="true"></div>
+            <div class="b2b-metric">
+              <span class="b2b-metric__value">WCAG</span>
+              <span class="b2b-metric__label" data-i18n="index.b2b.m2.label">AA/AAA certificado</span>
+            </div>
+            <div class="b2b-divider" aria-hidden="true"></div>
+            <div class="b2b-metric">
+              <span class="b2b-metric__value">24/7</span>
+              <span class="b2b-metric__label" data-i18n="index.b2b.m3.label">Monitoramento</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── B2C FEATURES ── -->
+    <section class="b2c" id="usuarios" aria-labelledby="b2c-heading">
+      <div class="b2c__header">
+        <p class="section-eyebrow" data-i18n="index.b2c.eyebrow">Para usuários</p>
+        <h2 class="section-title" id="b2c-heading" data-i18n-html="index.b2c.title">Sua voz no <em>digital.</em> Sem depender de ninguém.</h2>
+        <p class="section-sub" data-i18n="index.b2c.sub">Compatível com JAWS, NVDA e Orca. Funciona em qualquer site,
+          sem configuração complexa.</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card mix-blue">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke-linejoin="round" />
+              <path d="M15.54 8.46a5 5 0 010 7.07" />
+              <path d="M19.07 4.93a10 10 0 010 14.14" />
+            </svg>
+          </div>
+          <h3 data-i18n="index.b2c.f1.title">Voz Neural em PT-BR</h3>
+          <p data-i18n="index.b2c.f1.text">Leitura natural com entonação e pausas corretas. Velocidade e tom ajustáveis. Suporte a múltiplas vozes
+            regionais.</p>
+          <span class="feature-tag" data-i18n="index.b2c.f1.tag">IA Generativa</span>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" fill="#D3DC2A" stroke="none" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+          </div>
+          <h3 data-i18n="index.b2c.f2.title">Descrição de Imagens</h3>
+          <p data-i18n="index.b2c.f2.text">Qualquer imagem sem alt text recebe descrição automática detalhada, incluindo gráficos, captchas e banners.
+          </p>
+          <span class="feature-tag" data-i18n="index.b2c.f2.tag">Visão Computacional</span>
+        </article>
+
+        <article class="feature-card mix-dark">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
+            </svg>
+          </div>
+          <h3 data-i18n="index.b2c.f3.title">Leitura Fácil</h3>
+          <p data-i18n="index.b2c.f3.text">Textos complexos reescritos em linguagem simples. Ideal para usuários com baixa visão ou dificuldades de
+            leitura.</p>
+          <span class="feature-tag" data-i18n="index.b2c.f3.tag">NLP</span>
+        </article>
+
+        <article class="feature-card mix-dark">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="14" rx="2" />
+              <line x1="6" y1="10" x2="6" y2="10" stroke-width="2.5" />
+              <line x1="10" y1="10" x2="10" y2="10" stroke-width="2.5" />
+              <line x1="14" y1="10" x2="14" y2="10" stroke-width="2.5" />
+              <line x1="18" y1="10" x2="18" y2="10" stroke-width="2.5" />
+              <line x1="6" y1="14" x2="6" y2="14" stroke-width="2.5" />
+              <line x1="18" y1="14" x2="18" y2="14" stroke-width="2.5" />
+              <line x1="10" y1="14" x2="14" y2="14" />
+            </svg>
+          </div>
+          <h3 data-i18n="index.b2c.f4.title">Navegação por Teclado</h3>
+          <p data-i18n="index.b2c.f4.text">Foco visível aprimorado e atalhos de teclado customizados. Compatível com qualquer layout e sistema
+            operacional.</p>
+          <span class="feature-tag" data-i18n="index.b2c.f4.tag">Acessibilidade Universal</span>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a10 10 0 010 20z" fill="#D3DC2A" fill-opacity="0.2" stroke="none" />
+              <line x1="12" y1="2" x2="12" y2="22" stroke="#D3DC2A" />
+            </svg>
+          </div>
+          <h3 data-i18n="index.b2c.f5.title">Alto Contraste</h3>
+          <p data-i18n="index.b2c.f5.text">Perfis visuais para baixa visão: alto contraste, modo escuro, ajuste de tamanho de fonte e espaçamento.</p>
+          <span class="feature-tag" data-i18n="index.b2c.f5.tag">Personalização</span>
+        </article>
+
+        <article class="feature-card mix-blue">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D3DC2A" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3 data-i18n="index.b2c.f6.title">Zero Configuração</h3>
+          <p data-i18n="index.b2c.f6.text">Funciona imediatamente após instalação. Sem curva de aprendizado. Atualizações automáticas e silenciosas.
+          </p>
+          <span class="feature-tag" data-i18n-html="index.b2c.f6.tag">Plug &amp; Play</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── PLANS PREVIEW ── -->
+    <section class="plans" id="planos" aria-labelledby="plans-heading">
+      <div class="plans__header">
+        <p class="section-eyebrow" data-i18n="index.plans.eyebrow">Planos</p>
+        <h2 class="section-title" id="plans-heading" data-i18n-html="index.plans.title">Simples assim. <em>Sem surpresas.</em></h2>
+        <p class="section-sub" data-i18n="index.plans.sub">Do gratuito ao enterprise — e também consultoria com instalação sem mensalidade.</p>
+      </div>
+
+      <div class="plans__ctas">
+        <a href="precos.html" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+            <line x1="1" y1="10" x2="23" y2="10" />
+          </svg>
+          <span data-i18n="index.plans.ctaAll">Ver todos os planos e preços</span>
+        </a>
+        <a href="precos.html#consultoria" class="btn-secondary">
+          <span data-i18n="index.plans.ctaConsulting">Consultoria com instalação</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Blurred preview cards -->
+      <div class="plans-grid" aria-hidden="true">
+        <div class="plan-card">
+          <p class="plan-name" data-i18n="index.plans.p1.name">Usuário</p>
+          <div class="plan-price"><sup>R$</sup>0</div>
+          <p class="plan-price-sub" data-i18n="index.plans.p1.priceSub">Para sempre grátis</p>
+          <ul class="plan-features">
+            <li data-i18n="index.plans.p1.f1">Leitura de tela básica</li>
+            <li data-i18n="index.plans.p1.f2">Descrição de até 50 imagens/mês</li>
+            <li data-i18n="index.plans.p1.f3">Alto contraste e ajuste de fonte</li>
+            <li data-i18n="index.plans.p1.f4">Suporte por email</li>
+          </ul>
+        </div>
+        <div class="plan-card plan-card--featured">
+          <p class="plan-name" data-i18n="index.plans.p2.name">Profissional</p>
+          <div class="plan-price"><sup>R$</sup>49</div>
+          <p class="plan-price-sub" data-i18n="index.plans.p2.priceSub">por mês, por site</p>
+          <ul class="plan-features">
+            <li data-i18n="index.plans.p2.f1">Tudo do plano gratuito</li>
+            <li data-i18n="index.plans.p2.f2">Imagens ilimitadas</li>
+            <li data-i18n="index.plans.p2.f3">Relatório de conformidade WCAG</li>
+            <li data-i18n="index.plans.p2.f4">Voz neural premium</li>
+            <li data-i18n="index.plans.p2.f5">Suporte prioritário 24/7</li>
+            <li data-i18n="index.plans.p2.f6">Certificado de acessibilidade</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer role="contentinfo">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img footer-logo" />
+        </a>
+        <p data-i18n="footer.brandDesc">Tornando a internet acessível para todos os brasileiros, uma página por vez.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.product">Produto</h5>
+        <a href="#como-funciona" data-i18n="nav.howItWorks">Como funciona</a>
+        <a href="#usuarios" data-i18n="footer.forUsers">Para usuários</a>
+        <a href="#empresas" data-i18n="footer.forCompanies">Para empresas</a>
+        <a href="precos.html" data-i18n="footer.plansPrices">Planos e preços</a>
+        <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.company">Empresa</h5>
+        <a href="sobre.html" data-i18n="nav.about">Sobre nós</a>
+        <a href="#" data-i18n="footer.blog">Blog</a>
+        <a href="#" data-i18n="footer.press">Imprensa</a>
+        <a href="#" data-i18n="footer.careers">Carreiras</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.support">Suporte</h5>
+        <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+        <a href="#" data-i18n="footer.docs">Documentação</a>
+        <a href="#" data-i18n="footer.status">Status</a>
+        <a href="contato.html" data-i18n="footer.contact">Contato</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><span data-i18n="footer.copyrightPre">© 2025 Help2See. Feito com</span>
+        <svg class="footer-heart" width="12" height="12" viewBox="0 0 24 24" fill="#D3DC2A" stroke="none"
+          aria-label="amor" data-i18n-attr="aria-label:footer.heartAria">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg>
+        <span data-i18n="footer.copyrightPost">para a acessibilidade digital brasileira.</span>
+      </p>
+      <p><a href="#" data-i18n="footer.privacy">Privacidade</a> &nbsp;·&nbsp; <a href="#" data-i18n="footer.terms">Termos</a></p>
+    </div>
+  </footer>
+
+  <!-- GSAP via CDN -->
+    <!-- Bibliotecas (carregadas uma única vez) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Scripts do site (i18n primeiro: resolve idioma + expõe window.H2SI18n) -->
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/particle-wave.js"></script>
+  <script src="js/auth-nav.js"></script>
+
+  <!-- Help2See 3.0 (plugin carregado uma única vez, init com guarda) -->
+  <script src="js/help.js"></script>
+  <script>
+    (function () {
+      function bootHelp2See() {
+        if (window.Help2See && !window.__h2sBooted) {
+          window.__h2sBooted = true;
+          Help2See.init(); // idempotent + SPA-safe
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootHelp2See, { once: true });
+      } else { bootHelp2See(); }
+    })();
+  </script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+</body>
+
+</html>

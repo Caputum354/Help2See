@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="conta.pageTitle">Minha Conta — Help2See</title>
+  <meta name="description" content="Gerencie sua conta e a assinatura do plano Profissional do Help2See.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .account-section { padding: 140px 40px 120px; max-width: 880px; margin: 0 auto; }
+    .account-section h1 { font-family: var(--serif); font-size: 46px; color: var(--white); margin: 0 0 8px; }
+    .account-section .account-sub { color: var(--gray); font-size: 16px; margin: 0 0 40px; }
+    .account-card {
+      background: var(--navy2); border: 1px solid var(--gray2); border-radius: 24px;
+      padding: 40px; margin-bottom: 24px;
+    }
+    .account-card h2 { font-family: var(--serif); font-size: 26px; color: var(--white); margin: 0 0 20px; }
+    .account-row { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--gray2); }
+    .account-row:last-child { border-bottom: none; }
+    .account-row .label { color: var(--gray); font-weight: 600; font-size: 14px; }
+    .account-row .value { color: var(--white); font-weight: 700; font-size: 15px; text-align: right; }
+    .plan-pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 100px;
+      font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .04em;
+    }
+    .plan-pill.free { background: var(--gray2); color: var(--white); }
+    .plan-pill.pro { background: var(--yellow); color: var(--ink-on-accent); }
+    .plan-pill.canceled { background: #F3E3C2; color: var(--gold-ink); }
+    .account-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+    .account-banner {
+      border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; font-weight: 600; font-size: 15px;
+      border: 1px solid transparent; display: none;
+    }
+    .account-banner.show { display: block; }
+    .account-banner.ok { background: #EAF6EC; color: #1E7B34; border-color: #BfE4C7; }
+    .account-banner.pending { background: #FFF6E0; color: #8A6A00; border-color: #F0E0A8; }
+    .account-banner.err { background: #FBE9E9; color: #A12626; border-color: #F0C4C4; }
+    .btn-danger {
+      background: transparent; border: 1px solid var(--gray2); color: var(--white);
+      padding: 14px 28px; border-radius: 100px; font-weight: 700; font: inherit; cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-danger:hover { border-color: #A12626; color: #A12626; }
+    .account-muted { color: var(--gray); font-size: 14px; margin-top: 14px; }
+  </style>
+</head>
+
+<body data-page="account">
+
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light bg-light-1"></div>
+    <div class="bg-light bg-light-2"></div>
+    <div class="bg-light bg-light-3"></div>
+    <div class="bg-light bg-light-4"></div>
+  </div>
+
+  <!-- ── NAV ── -->
+  <nav role="navigation" aria-label="Navegação principal" data-i18n-attr="aria-label:nav.mainAria">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial" data-i18n-attr="aria-label:nav.logoAria">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#como-funciona" data-i18n="nav.howItWorks">Como funciona</a></li>
+      <li><a href="index.html#empresas" data-i18n="nav.companies">Empresas</a></li>
+      <li><a href="index.html#usuarios" data-i18n="nav.users">Usuários</a></li>
+      <li><a href="sobre.html" data-i18n="nav.about">Sobre nós</a></li>
+      <li><a href="precos.html" data-i18n="nav.plans">Planos</a></li>
+      <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="plugin.html" data-i18n="nav.plugin">O Plugin</a></li>
+      <li><a href="login.html" class="nav-cta" data-i18n="nav.login">Entrar</a></li>
+      <li class="nav-lang">
+        <select class="js-lang-select" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+          <option value="pt">Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Abrir menu" aria-expanded="false" data-i18n-attr="aria-label:nav.openMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" role="dialog" aria-label="Menu de navegação" data-i18n-attr="aria-label:nav.mobileAria">
+    <a href="index.html#como-funciona" data-i18n="nav.howItWorks">Como funciona</a>
+    <a href="index.html#empresas" data-i18n="nav.companies">Empresas</a>
+    <a href="index.html#usuarios" data-i18n="nav.users">Usuários</a>
+    <a href="sobre.html" data-i18n="nav.about">Sobre nós</a>
+    <a href="precos.html" data-i18n="nav.plans">Planos</a>
+    <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+    <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+    <a href="login.html" class="mobile-cta" data-i18n="nav.login">Entrar</a>
+    <select class="js-lang-select mobile-lang" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+      <option value="pt">Português</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+    </select>
+  </div>
+
+  <main id="main-content">
+    <section class="account-section" aria-labelledby="account-title">
+      <h1 id="account-title" data-i18n="conta.heading">Minha Conta</h1>
+      <p class="account-sub" id="account-greeting" data-i18n="conta.loading">Carregando seus dados…</p>
+
+      <div class="account-banner" id="banner" role="status" aria-live="polite"></div>
+
+      <!-- Dados da conta -->
+      <div class="account-card">
+        <h2 data-i18n="conta.accountData">Dados da conta</h2>
+        <div class="account-row">
+          <span class="label" data-i18n="auth.name">Nome</span>
+          <span class="value" id="acc-name">—</span>
+        </div>
+        <div class="account-row">
+          <span class="label" data-i18n="auth.email">E-mail</span>
+          <span class="value" id="acc-email">—</span>
+        </div>
+        <div class="account-row">
+          <span class="label" data-i18n="conta.emailVerified">E-mail confirmado</span>
+          <span class="value" id="acc-verified">—</span>
+        </div>
+      </div>
+
+      <!-- Assinatura -->
+      <div class="account-card">
+        <h2 data-i18n="conta.subscription">Assinatura</h2>
+        <div class="account-row">
+          <span class="label" data-i18n="conta.currentPlan">Plano atual</span>
+          <span class="value"><span class="plan-pill free" id="plan-pill" data-i18n="conta.planFree">Gratuito</span></span>
+        </div>
+        <div class="account-row" id="row-cycle" style="display:none;">
+          <span class="label" data-i18n="conta.billing">Cobrança</span>
+          <span class="value" id="acc-cycle">—</span>
+        </div>
+        <div class="account-row" id="row-renew" style="display:none;">
+          <span class="label" id="renew-label" data-i18n="conta.renewsOn">Renova em</span>
+          <span class="value" id="acc-renew">—</span>
+        </div>
+
+        <div class="account-actions" id="account-actions"></div>
+        <p class="account-muted" id="account-note"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer role="contentinfo">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0">
+          <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" style="height:28px" />
+        </a>
+        <p data-i18n="footer.brandDesc">Tornando a internet acessível para todos os brasileiros, uma página por vez.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.product">Produto</h5>
+        <a href="index.html#como-funciona" data-i18n="nav.howItWorks">Como funciona</a>
+        <a href="precos.html" data-i18n="footer.plansPrices">Planos e preços</a>
+        <a href="plugin.html" data-i18n="nav.plugin">O Plugin</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.company">Empresa</h5>
+        <a href="sobre.html" data-i18n="nav.about">Sobre nós</a>
+        <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><span data-i18n="footer.copyrightPre">© 2025 Help2See. Feito com</span> ♥ <span data-i18n="footer.copyrightPost">para a acessibilidade digital brasileira.</span></p>
+      <p><a href="#" data-i18n="footer.privacy">Privacidade</a> &nbsp;·&nbsp; <a href="#" data-i18n="footer.terms">Termos</a></p>
+    </div>
+  </footer>
+
+  <!-- i18n primeiro (expõe window.H2SI18n para o script de conta abaixo) -->
+  <script src="js/i18n.js"></script>
+  <script src="js/auth-client.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var T = (window.H2SI18n && window.H2SI18n.t) ? window.H2SI18n.t : function (k) { return k; };
+      var auth = window.h2sAuth;
+
+      // Exige login: sem sessão, manda para o login e volta para cá.
+      if (!auth || !auth.isLoggedIn()) {
+        window.location.href = 'login.html?next=conta.html';
+        return;
+      }
+
+      var qs = new URLSearchParams(window.location.search);
+      var banner = document.getElementById('banner');
+
+      function showBanner(kind, text) {
+        banner.className = 'account-banner show ' + kind;
+        banner.textContent = text;
+      }
+      var DATE_LOCALE = { pt: 'pt-BR', en: 'en-US', es: 'es-ES' };
+      function fmtDate(iso) {
+        if (!iso) return '—';
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return '—';
+        var lang = (window.H2SI18n && window.H2SI18n.getLanguage()) || 'pt';
+        return d.toLocaleDateString(DATE_LOCALE[lang] || 'pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+      }
+      function cycleLabel(c) { return c === 'annual' ? T('conta.cycleAnnual') : c === 'monthly' ? T('conta.cycleMonthly') : '—'; }
+
+      // Preenche os dados da conta a partir do cache (e revalida no servidor).
+      function renderUser(u) {
+        if (!u) return;
+        document.getElementById('account-greeting').textContent = T('conta.greeting', { name: (u.name || u.email) });
+        document.getElementById('acc-name').textContent = u.name || '—';
+        document.getElementById('acc-email').textContent = u.email || '—';
+        document.getElementById('acc-verified').textContent = u.email_verified ? T('conta.yes') : T('conta.pending');
+      }
+
+      function renderSubscription(sub) {
+        var pill = document.getElementById('plan-pill');
+        var rowCycle = document.getElementById('row-cycle');
+        var rowRenew = document.getElementById('row-renew');
+        var actions = document.getElementById('account-actions');
+        var note = document.getElementById('account-note');
+        actions.innerHTML = '';
+        note.textContent = '';
+
+        var isPro = sub && sub.plan === 'professional';
+        if (!isPro) {
+          pill.className = 'plan-pill free';
+          pill.textContent = T('conta.planFree');
+          rowCycle.style.display = 'none';
+          rowRenew.style.display = 'none';
+          var up = document.createElement('a');
+          up.href = 'precos.html';
+          up.className = 'btn-primary';
+          up.setAttribute('role', 'button');
+          up.textContent = T('conta.upgradeBtn');
+          actions.appendChild(up);
+          return;
+        }
+
+        var canceled = sub.status === 'canceled';
+        pill.className = 'plan-pill ' + (canceled ? 'canceled' : 'pro');
+        pill.textContent = canceled ? T('conta.planProCanceled') : T('conta.planPro');
+        rowCycle.style.display = '';
+        rowRenew.style.display = '';
+        document.getElementById('acc-cycle').textContent = cycleLabel(sub.billing_cycle);
+        document.getElementById('renew-label').textContent = canceled ? T('conta.accessUntil') : T('conta.renewsOn');
+        document.getElementById('acc-renew').textContent = fmtDate(sub.current_period_end);
+
+        if (canceled) {
+          note.textContent = T('conta.canceledNote');
+          return;
+        }
+        var cancelBtn = document.createElement('button');
+        cancelBtn.type = 'button';
+        cancelBtn.className = 'btn-danger';
+        cancelBtn.textContent = T('conta.cancelBtn');
+        cancelBtn.addEventListener('click', function () {
+          if (!window.confirm(T('conta.cancelConfirm'))) return;
+          cancelBtn.disabled = true;
+          cancelBtn.textContent = T('conta.canceling');
+          auth.cancelSubscription().then(function (res) {
+            if (res.ok && res.data) {
+              renderSubscription(res.data);
+              showBanner('ok', T('conta.cancelOk'));
+            } else {
+              cancelBtn.disabled = false;
+              cancelBtn.textContent = T('conta.cancelBtn');
+              showBanner('err', T('conta.cancelErr'));
+            }
+          }).catch(function () {
+            cancelBtn.disabled = false;
+            cancelBtn.textContent = T('conta.cancelBtn');
+            showBanner('err', T('auth.errConn'));
+          });
+        });
+        actions.appendChild(cancelBtn);
+      }
+
+      function loadSubscription() {
+        return auth.getSubscription().then(function (res) {
+          if (res.ok && res.data) renderSubscription(res.data);
+        });
+      }
+
+      // 1) Pinta o que já temos em cache (rápido) e revalida o usuário no servidor.
+      renderUser(auth.getUser());
+      auth.refreshUser().then(function (res) {
+        if (res.ok && res.data) renderUser(res.data);
+      }).catch(function () { /* offline: mantém o cache */ });
+
+      // 2) Trata o retorno do checkout do Mercado Pago, se houver.
+      var checkout = qs.get('checkout');
+      var paymentId = qs.get('payment_id') || qs.get('collection_id');
+
+      function cleanUrl() {
+        try { window.history.replaceState({}, document.title, 'conta.html'); } catch (e) { /* ok */ }
+      }
+
+      if (checkout === 'success' && paymentId) {
+        showBanner('pending', T('conta.confirmingPayment'));
+        auth.confirmCheckout(paymentId).then(function (res) {
+          if (res.ok && res.data && res.data.plan === 'professional') {
+            renderSubscription(res.data);
+            showBanner('ok', T('conta.paymentOk'));
+          } else {
+            // Pagamento ainda não compensou: mostra estado atual e orienta.
+            loadSubscription();
+            showBanner('pending', T('conta.paymentPending'));
+          }
+          cleanUrl();
+        }).catch(function () {
+          loadSubscription();
+          showBanner('err', T('conta.paymentErr'));
+          cleanUrl();
+        });
+      } else {
+        if (checkout === 'pending') showBanner('pending', T('conta.checkoutPending'));
+        else if (checkout === 'failure') showBanner('err', T('conta.checkoutFailure'));
+        if (checkout) cleanUrl();
+        loadSubscription();
+      }
+    })();
+  </script>
+
+  <script src="js/script.js"></script>
+  <script src="js/auth-nav.js"></script>
+
+  <!-- Help2See (plugin de acessibilidade) -->
+  <script src="js/help.js"></script>
+  <script>
+    (function () {
+      function bootHelp2See() {
+        if (window.Help2See && !window.__h2sBooted) {
+          window.__h2sBooted = true;
+          Help2See.init();
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootHelp2See, { once: true });
+      } else { bootHelp2See(); }
+    })();
+  </script>
+</body>
+
+</html>

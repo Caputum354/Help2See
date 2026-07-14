@@ -1,0 +1,23 @@
+# ── NUNCA comitar segredos ──────────────────────────────────────
+# Qualquer arquivo .env em qualquer pasta (contém API keys, senhas, HMAC secrets).
+.env
+**/.env
+*.env
+!*.env.example
+!*.env.production.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Node / Vercel
+node_modules/
+.vercel/
+
+# Artefatos locais
+*.mp3
+teste.mp3
+.claude/

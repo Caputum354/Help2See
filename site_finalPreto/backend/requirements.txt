@@ -1,0 +1,26 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+# Mantido em 2.x (compatível com o fastapi acima). Sem pin exato: no Python
+# 3.14 a versão 2.10.4 não tem wheel pré-compilado e exigiria compilar Rust
+# (MSVC). Aqui o pip pega a 2.x mais recente, que já traz wheel para 3.14.
+pydantic>=2.11,<3
+python-dotenv==1.0.1
+requests==2.32.3
+
+# ── Pipeline de analytics ───────────────────────────────────────
+# Ingestão de telemetria (/api/collect), armazenamento pseudonimizado e rollups.
+pymongo==4.10.1          # armazena eventos (time-series + TTL) e agregados
+SQLAlchemy==2.0.36       # resolve_site() lê o mapeamento site_key → site/org
+PyMySQL==1.1.1           # driver MySQL usado pelo SQLAlchemy
+cryptography>=43,<46     # exigido pelo PyMySQL p/ auth caching_sha2_password (MySQL 8)
+APScheduler==3.11.0      # job de agregação horário in-process (opcional)
+cachetools==5.5.0        # cache TTL do resolve_site()
+
+# ── Autenticação ────────────────────────────────────────────────
+argon2-cffi==25.1.0      # hash de senha (Argon2, recomendação OWASP)
+email-validator==2.3.0   # validação de e-mail do Pydantic (EmailStr)
+# Envio do código de recuperação por e-mail usa a smtplib da biblioteca padrão
+# (sem dependência extra).
+
+# ── Assinatura (plano Profissional) ─────────────────────────────
+mercadopago==2.2.3       # SDK oficial do Mercado Pago (Checkout Pro + webhook)

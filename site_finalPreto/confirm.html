@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="confirm.pageTitle">Confirmar e-mail — Help2See</title>
+  <meta name="description" content="Confirme seu endereço de e-mail para ativar sua conta Help2See.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body data-page="login">
+
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light bg-light-1"></div>
+    <div class="bg-light bg-light-2"></div>
+    <div class="bg-light bg-light-3"></div>
+    <div class="bg-light bg-light-4"></div>
+  </div>
+
+  <header class="auth-topbar">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial" data-i18n-attr="aria-label:nav.logoAria">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+    <div class="auth-topbar-right">
+      <a href="login.html" style="color:var(--gray);text-decoration:none;font-weight:600;" data-i18n="confirm.topLogin">← Ir para o login</a>
+      <select class="js-lang-select" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+        <option value="pt">Português</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <section class="auth-card" aria-labelledby="auth-title">
+      <img src="img/help2seeLogo3Escuro.png" alt="" class="auth-logo" aria-hidden="true" />
+      <h1 id="auth-title" class="auth-title" style="text-align:center;" data-i18n="confirm.heading">Confirmar e-mail</h1>
+      <p class="auth-sub" id="confirm-sub" data-i18n="confirm.validating">Validando seu link de confirmação...</p>
+      <p class="auth-msg" id="confirm-msg" role="status" aria-live="polite"></p>
+      <p class="auth-foot" style="margin-top:18px;"><a href="login.html" data-i18n="confirm.footLogin">Ir para o login</a></p>
+    </section>
+  </main>
+
+  <!-- i18n primeiro (expõe window.H2SI18n) -->
+  <script src="js/i18n.js"></script>
+  <!-- Cliente de autenticação (fala com o backend FastAPI /api/auth/*) -->
+  <script src="js/auth-client.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var T = (window.H2SI18n && window.H2SI18n.t) ? window.H2SI18n.t : function (k) { return k; };
+      var sub = document.getElementById('confirm-sub');
+      var msg = document.getElementById('confirm-msg');
+      function setMsg(type, text) { msg.className = 'auth-msg ' + type; msg.textContent = text; }
+      // Set the sub via a data-i18n key so it re-localizes on live language change.
+      function setSub(key) { sub.setAttribute('data-i18n', key); sub.textContent = T(key); }
+
+      var params = new URLSearchParams(window.location.search);
+      var token = params.get('token') || '';
+
+      if (!token) {
+        setSub('confirm.invalidLink');
+        setMsg('error', T('confirm.tokenMissing'));
+        return;
+      }
+
+      h2sAuth.confirm(token).then(function (res) {
+        if (res.ok) {
+          setSub('confirm.done');
+          setMsg('ok', T('confirm.doneMsg'));
+          // Atualiza o usuário em sessão (se logado) para refletir email_verified.
+          h2sAuth.refreshUser().finally(function () {
+            setTimeout(function () { window.location.href = 'login.html'; }, 1800);
+          });
+        } else {
+          setSub('confirm.failed');
+          setMsg('error', h2sAuth.errorMessage(res, T('confirm.failedMsg')));
+        }
+      }).catch(function () {
+        setSub('confirm.connErr');
+        setMsg('error', T('auth.errConn'));
+      });
+    })();
+  </script>
+</body>
+
+</html>

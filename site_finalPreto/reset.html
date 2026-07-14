@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="reset.pageTitle">Redefinir senha — Help2See</title>
+  <meta name="description" content="Defina uma nova senha para sua conta Help2See.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body data-page="login">
+
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light bg-light-1"></div>
+    <div class="bg-light bg-light-2"></div>
+    <div class="bg-light bg-light-3"></div>
+    <div class="bg-light bg-light-4"></div>
+  </div>
+
+  <header class="auth-topbar">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+    <div class="auth-topbar-right">
+      <a href="login.html" style="color:var(--gray);text-decoration:none;font-weight:600;" data-i18n="reset.topLogin">← Ir para o login</a>
+      <select class="js-lang-select" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+        <option value="pt">Português</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <section class="auth-card" aria-labelledby="auth-title">
+      <img src="img/help2seeLogo3Escuro.png" alt="" class="auth-logo" aria-hidden="true" />
+      <h1 id="auth-title" class="auth-title" style="text-align:center;" data-i18n="reset.heading">Redefinir senha</h1>
+      <p class="auth-sub" data-i18n="reset.sub">Escolha uma nova senha para sua conta.</p>
+
+      <form id="form-reset" novalidate>
+        <div class="auth-field">
+          <label for="reset-password" data-i18n="reset.newPass">Nova senha</label>
+          <input type="password" id="reset-password" autocomplete="new-password"
+            placeholder="Mínimo 6 caracteres" required data-i18n-attr="placeholder:login.passPlaceholder" />
+        </div>
+        <div class="auth-field">
+          <label for="reset-confirm" data-i18n="reset.confirmPass">Confirmar senha</label>
+          <input type="password" id="reset-confirm" autocomplete="new-password"
+            placeholder="Repita a senha" required data-i18n-attr="placeholder:reset.repeatPlaceholder" />
+        </div>
+        <button type="submit" class="btn-primary auth-submit" data-i18n="reset.submit">Salvar nova senha</button>
+        <p class="auth-msg" id="reset-msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="auth-foot"><a href="login.html" data-i18n="reset.backLogin">Voltar ao login</a></p>
+    </section>
+  </main>
+
+  <!-- i18n primeiro (expõe window.H2SI18n) -->
+  <script src="js/i18n.js"></script>
+  <!-- Cliente de autenticação (fala com o backend FastAPI /api/auth/*) -->
+  <script src="js/auth-client.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var T = (window.H2SI18n && window.H2SI18n.t) ? window.H2SI18n.t : function (k) { return k; };
+      var msg = document.getElementById('reset-msg');
+      var form = document.getElementById('form-reset');
+
+      function setMsg(type, text) { msg.className = 'auth-msg ' + type; msg.textContent = text; }
+
+      // O token de troca vem do passo anterior (verificação do código por
+      // e-mail), guardado em sessionStorage por recover-code.html.
+      var exchangeToken = '';
+      try { exchangeToken = sessionStorage.getItem('h2s_reset_exchange') || ''; }
+      catch (e) { exchangeToken = ''; }
+
+      if (!exchangeToken) {
+        setMsg('error', T('reset.noSession'));
+        form.querySelector('button[type="submit"]').disabled = true;
+        return;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var pass = document.getElementById('reset-password').value;
+        var confirm = document.getElementById('reset-confirm').value;
+        if (pass.length < 6) { setMsg('error', T('login.passMin')); return; }
+        if (pass !== confirm) { setMsg('error', T('reset.mismatch')); return; }
+
+        setMsg('', T('reset.saving'));
+        h2sAuth.reset(exchangeToken, pass).then(function (res) {
+          if (res.ok) {
+            // Token de troca é de uso único — limpa para não reutilizar.
+            try { sessionStorage.removeItem('h2s_reset_exchange'); sessionStorage.removeItem('h2s_reset_email'); } catch (err) { /* sem efeito */ }
+            setMsg('ok', T('reset.done'));
+            setTimeout(function () { window.location.href = 'login.html'; }, 1500);
+          } else {
+            setMsg('error', h2sAuth.errorMessage(res, T('reset.invalidSession')));
+          }
+        }).catch(function () {
+          setMsg('error', T('auth.errConn'));
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="login.title">Entrar — Help2See</title>
+  <meta name="description" content="Crie sua conta gratuita e teste o plugin de acessibilidade Help2See.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body data-page="login">
+
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light bg-light-1"></div>
+    <div class="bg-light bg-light-2"></div>
+    <div class="bg-light bg-light-3"></div>
+    <div class="bg-light bg-light-4"></div>
+  </div>
+
+  <!-- top bar -->
+  <header class="auth-topbar">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial" data-i18n-attr="aria-label:nav.logoAria">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+    <div class="auth-topbar-right">
+      <a href="index.html" style="color:var(--gray);text-decoration:none;font-weight:600;" data-i18n="auth.backToSite">← Voltar ao site</a>
+      <select class="js-lang-select" aria-label="Selecionar idioma" data-i18n-attr="aria-label:lang.aria">
+        <option value="pt">Português</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <section class="auth-card" aria-labelledby="auth-title">
+      <img src="img/help2seeLogo3Escuro.png" alt="" class="auth-logo" aria-hidden="true" />
+      <p class="auth-sub" id="auth-intro" data-i18n="login.intro">Acesse sua conta para entrar no site. É rápido e gratuito.</p>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tab-login" role="tab" aria-selected="true" data-i18n="login.tabLogin">Entrar</button>
+        <button class="auth-tab" id="tab-signup" role="tab" aria-selected="false" data-i18n="login.tabSignup">Criar conta</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="form-login" novalidate>
+        <div class="auth-field">
+          <label for="login-email" data-i18n="auth.email">E-mail</label>
+          <input type="email" id="login-email" autocomplete="email" placeholder="voce@email.com" required data-i18n-attr="placeholder:auth.emailPlaceholder" />
+        </div>
+        <div class="auth-field">
+          <label for="login-password" data-i18n="auth.password">Senha</label>
+          <input type="password" id="login-password" autocomplete="current-password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn-primary auth-submit" data-i18n="login.btnLogin">Entrar</button>
+        <p class="auth-msg" id="login-msg" role="status" aria-live="polite"></p>
+        <p style="text-align:center;margin-top:10px;">
+          <button type="button" id="link-forgot"
+            style="background:none;border:none;color:var(--primary,#4A4793);font-weight:600;cursor:pointer;text-decoration:underline;font:inherit;" data-i18n="login.forgot">
+            Esqueci minha senha
+          </button>
+        </p>
+      </form>
+
+      <!-- SIGNUP FORM -->
+      <form id="form-signup" class="auth-hidden" novalidate>
+        <div class="auth-field">
+          <label for="signup-name" data-i18n="auth.name">Nome</label>
+          <input type="text" id="signup-name" autocomplete="name" placeholder="Seu nome" required data-i18n-attr="placeholder:login.namePlaceholder" />
+        </div>
+        <div class="auth-field">
+          <label for="signup-email" data-i18n="auth.email">E-mail</label>
+          <input type="email" id="signup-email" autocomplete="email" placeholder="voce@email.com" required data-i18n-attr="placeholder:auth.emailPlaceholder" />
+        </div>
+        <div class="auth-field">
+          <label for="signup-password" data-i18n="auth.password">Senha</label>
+          <input type="password" id="signup-password" autocomplete="new-password" placeholder="Mínimo 6 caracteres"
+            required data-i18n-attr="placeholder:login.passPlaceholder" />
+        </div>
+        <button type="submit" class="btn-primary auth-submit" data-i18n="login.btnSignup">Criar conta</button>
+        <p class="auth-msg" id="signup-msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- FORGOT PASSWORD FORM -->
+      <form id="form-forgot" class="auth-hidden" novalidate>
+        <p class="auth-sub" style="margin-top:0" data-i18n="login.forgotSub">Informe seu e-mail e enviaremos um código
+          por e-mail para redefinir a senha.</p>
+        <div class="auth-field">
+          <label for="forgot-email" data-i18n="auth.email">E-mail</label>
+          <input type="email" id="forgot-email" autocomplete="email" placeholder="voce@email.com" required data-i18n-attr="placeholder:auth.emailPlaceholder" />
+        </div>
+        <button type="submit" class="btn-primary auth-submit" data-i18n="login.forgotBtn">Enviar código por e-mail</button>
+        <p class="auth-msg" id="forgot-msg" role="status" aria-live="polite"></p>
+        <p style="text-align:center;margin-top:10px;">
+          <button type="button" id="link-back-login"
+            style="background:none;border:none;color:var(--primary,#4A4793);font-weight:600;cursor:pointer;text-decoration:underline;font:inherit;" data-i18n="login.backLogin">
+            ← Voltar ao login
+          </button>
+        </p>
+      </form>
+
+      <!-- CONFIRM EMAIL (mostrado após o cadastro) -->
+      <div id="view-confirm" class="auth-hidden">
+        <h2 class="auth-title" style="text-align:center;font-size:27px;margin-bottom:8px;" data-i18n="login.confirmTitle">Confirme seu e-mail</h2>
+        <p class="auth-sub"><span data-i18n="login.confirmSub1">Falta um passo! Enviamos um link de confirmação para</span>
+          <strong class="auth-email" id="confirm-email">seu e-mail</strong>.
+          <span data-i18n="login.confirmSub2">Abra sua caixa de entrada e clique no link para ativar sua conta.</span></p>
+        <p class="auth-sub auth-sub-sm" data-i18n="login.confirmResendHint">Não recebeu? Confira a caixa de spam ou reenvie abaixo.</p>
+        <button type="button" id="btn-resend" class="btn-primary auth-submit" data-i18n="login.confirmResendBtn">Reenviar e-mail de confirmação</button>
+        <p class="auth-msg" id="confirm-pending-msg" role="status" aria-live="polite"></p>
+        <p style="text-align:center;margin-top:10px;">
+          <button type="button" id="link-continue"
+            style="background:none;border:none;color:var(--primary,#4A4793);font-weight:600;cursor:pointer;text-decoration:underline;font:inherit;" data-i18n="login.confirmContinue">
+            Continuar para o site →
+          </button>
+        </p>
+      </div>
+
+      <p class="auth-foot" data-i18n-html="login.foot">Ao continuar você concorda com os <a href="#">Termos</a> e a <a href="#">Privacidade</a>.</p>
+    </section>
+  </main>
+
+  <!-- i18n primeiro (expõe window.H2SI18n para os scripts abaixo) -->
+  <script src="js/i18n.js"></script>
+  <!-- Cliente de autenticação (fala com o backend FastAPI /api/auth/*) -->
+  <script src="js/auth-client.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var T = (window.H2SI18n && window.H2SI18n.t) ? window.H2SI18n.t : function (k) { return k; };
+
+      // Destino opcional pós-login (ex.: o formulário de contato). Só aceita
+      // caminhos relativos same-origin para evitar open redirect.
+      function getNext() {
+        try {
+          var n = new URLSearchParams(window.location.search).get('next');
+          if (n && !/^(https?:)?\/\//i.test(n) && n.indexOf(':') === -1 && n.charAt(0) !== '/') {
+            return n;
+          }
+        } catch (e) { /* sem next */ }
+        return null;
+      }
+      // Ciclo de cobrança opcional: quando o usuário veio do botão "Assinar" do
+      // plano Profissional, retomamos o checkout assim que ele se autentica.
+      function getCycle() {
+        try {
+          var c = new URLSearchParams(window.location.search).get('cycle');
+          return (c === 'monthly' || c === 'annual') ? c : null;
+        } catch (e) { return null; }
+      }
+      function redirectAfterAuth() {
+        var cycle = getCycle();
+        if (cycle && window.h2sAuth && h2sAuth.startCheckout) {
+          h2sAuth.startCheckout(cycle).then(function (res) {
+            if (res.ok && res.data && res.data.init_point) {
+              window.location.href = res.data.init_point;
+            } else {
+              window.location.href = getNext() || 'index.html';
+            }
+          }).catch(function () { window.location.href = getNext() || 'index.html'; });
+          return;
+        }
+        window.location.href = getNext() || 'index.html';
+      }
+      function setMsg(el, type, text) {
+        el.className = 'auth-msg ' + type;   // '', 'ok' ou 'error'
+        el.textContent = text;
+      }
+
+      // Já logado? Vai direto.
+      if (window.h2sAuth && h2sAuth.isLoggedIn()) { redirectAfterAuth(); return; }
+
+      var tabLogin = document.getElementById('tab-login');
+      var tabSignup = document.getElementById('tab-signup');
+      var formLogin = document.getElementById('form-login');
+      var formSignup = document.getElementById('form-signup');
+      var formForgot = document.getElementById('form-forgot');
+
+      function show(which) {
+        formLogin.classList.toggle('auth-hidden', which !== 'login');
+        formSignup.classList.toggle('auth-hidden', which !== 'signup');
+        formForgot.classList.toggle('auth-hidden', which !== 'forgot');
+        var loginTab = which === 'login';
+        var signupTab = which === 'signup';
+        tabLogin.classList.toggle('active', loginTab);
+        tabSignup.classList.toggle('active', signupTab);
+        tabLogin.setAttribute('aria-selected', loginTab);
+        tabSignup.setAttribute('aria-selected', signupTab);
+      }
+      tabLogin.addEventListener('click', function () { show('login'); });
+      tabSignup.addEventListener('click', function () { show('signup'); });
+      document.getElementById('link-forgot').addEventListener('click', function () { show('forgot'); });
+      document.getElementById('link-back-login').addEventListener('click', function () { show('login'); });
+
+      // ── Tela de confirmação de e-mail (após o cadastro) ──
+      var viewConfirm = document.getElementById('view-confirm');
+      var authIntro = document.getElementById('auth-intro');
+      var authTabs = document.querySelector('.auth-tabs');
+      function showConfirmView(email) {
+        formLogin.classList.add('auth-hidden');
+        formSignup.classList.add('auth-hidden');
+        formForgot.classList.add('auth-hidden');
+        if (authTabs) authTabs.classList.add('auth-hidden');
+        if (authIntro) authIntro.classList.add('auth-hidden');
+        document.getElementById('confirm-email').textContent = email;
+        viewConfirm.classList.remove('auth-hidden');
+      }
+      document.getElementById('btn-resend').addEventListener('click', function () {
+        var m = document.getElementById('confirm-pending-msg');
+        setMsg(m, '', T('login.resending'));
+        h2sAuth.resendConfirmation().then(function (res) {
+          if (res.ok) { setMsg(m, 'ok', T('login.resendOk')); }
+          else { setMsg(m, 'error', h2sAuth.errorMessage(res, T('login.resendErr'))); }
+        }).catch(function () { setMsg(m, 'error', T('auth.errConn')); });
+      });
+      document.getElementById('link-continue').addEventListener('click', function () { redirectAfterAuth(); });
+
+      // ── Login ──
+      formLogin.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var msg = document.getElementById('login-msg');
+        var email = document.getElementById('login-email').value.trim();
+        var pass = document.getElementById('login-password').value;
+        if (!email || !pass) { setMsg(msg, 'error', T('login.fillEmailPass')); return; }
+        setMsg(msg, '', T('login.loggingIn'));
+        h2sAuth.login(email, pass).then(function (res) {
+          if (res.ok) { setMsg(msg, 'ok', T('login.loginOk')); redirectAfterAuth(); }
+          else { setMsg(msg, 'error', h2sAuth.errorMessage(res, T('login.loginErr'))); }
+        }).catch(function () {
+          setMsg(msg, 'error', T('auth.errConn'));
+        });
+      });
+
+      // ── Cadastro ──
+      formSignup.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var msg = document.getElementById('signup-msg');
+        var name = document.getElementById('signup-name').value.trim();
+        var email = document.getElementById('signup-email').value.trim();
+        var pass = document.getElementById('signup-password').value;
+        if (!name || !email || !pass) { setMsg(msg, 'error', T('login.fillAll')); return; }
+        if (pass.length < 6) { setMsg(msg, 'error', T('login.passMin')); return; }
+        setMsg(msg, '', T('login.creating'));
+        h2sAuth.register(name, email, pass).then(function (res) {
+          if (res.ok) {
+            // Modo dev (sem SMTP): abre o link de confirmação direto para teste.
+            if (res.data && res.data.dev_verify_token) {
+              window.location.href = 'confirm.html?token=' + encodeURIComponent(res.data.dev_verify_token);
+              return;
+            }
+            // Mostra a tela "confirme seu e-mail" (a conta já está logada).
+            setMsg(msg, 'ok', T('login.created'));
+            showConfirmView(email);
+          } else { setMsg(msg, 'error', h2sAuth.errorMessage(res, T('login.createErr'))); }
+        }).catch(function () {
+          setMsg(msg, 'error', T('auth.errConn'));
+        });
+      });
+
+      // ── Esqueci minha senha ──
+      formForgot.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var msg = document.getElementById('forgot-msg');
+        var email = document.getElementById('forgot-email').value.trim();
+        if (!email) { setMsg(msg, 'error', T('login.enterEmail')); return; }
+        setMsg(msg, '', T('login.sending'));
+        h2sAuth.forgot(email).then(function (res) {
+          if (res.status === 429) {
+            setMsg(msg, 'error', h2sAuth.errorMessage(res, T('login.tooMany')));
+            return;
+          }
+          // Resposta sempre genérica (o backend não revela se o e-mail existe).
+          // Guarda o e-mail para a próxima etapa e segue para a página do código.
+          try { sessionStorage.setItem('h2s_reset_email', email); } catch (err) { /* sem efeito */ }
+          var dest = 'recover-code.html?email=' + encodeURIComponent(email);
+          // Modo dev (sem SMTP): o backend devolve o código; passa adiante para teste.
+          if (res.data && res.data.dev_code) {
+            dest += '&dev_code=' + encodeURIComponent(res.data.dev_code);
+          }
+          setMsg(msg, 'ok', T('login.codeSent'));
+          setTimeout(function () { window.location.href = dest; }, 800);
+        }).catch(function () {
+          setMsg(msg, 'error', T('auth.errConn'));
+        });
+      });
+    })();
+  </script>
+    <!-- GSAP -->
+  <!-- Bibliotecas (carregadas uma única vez) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Scripts do site -->
+  <script src="js/script.js"></script>
+  <script src="js/particle-wave.js"></script>
+  <script src="js/auth-nav.js"></script>
+
+  <!-- Help2See 3.0 (plugin carregado uma única vez, init com guarda) -->
+  <script src="js/help.js"></script>
+  <script>
+    (function () {
+      function bootHelp2See() {
+        if (window.Help2See && !window.__h2sBooted) {
+          window.__h2sBooted = true;
+          Help2See.init(); // idempotent + SPA-safe
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootHelp2See, { once: true });
+      } else { bootHelp2See(); }
+    })();
+  </script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+</body>
+
+</html>

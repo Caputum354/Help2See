@@ -1,0 +1,3 @@
+# O backend NÃO vai para a Vercel — ele roda no Railway. Isto garante que
+# nenhum código de servidor (nem .env) seja publicado no site estático.
+backend/
