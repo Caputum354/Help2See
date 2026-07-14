@@ -48,6 +48,14 @@
     }
     .btn-danger:hover { border-color: #A12626; color: #A12626; }
     .account-muted { color: var(--gray); font-size: 14px; margin-top: 14px; }
+    /* Botão inline de reenviar a confirmação de e-mail (status "Pendente"). */
+    .btn-resend {
+      background: var(--yellow); color: var(--ink-on-accent); border: none;
+      padding: 6px 14px; border-radius: 100px; font: inherit; font-size: 12.5px;
+      font-weight: 700; cursor: pointer; margin-left: 10px; vertical-align: middle;
+    }
+    .btn-resend:hover { filter: brightness(1.05); }
+    .btn-resend:disabled { opacity: 0.55; cursor: default; }
   </style>
 </head>
 
@@ -214,7 +222,32 @@
         document.getElementById('account-greeting').textContent = T('conta.greeting', { name: (u.name || u.email) });
         document.getElementById('acc-name').textContent = u.name || '—';
         document.getElementById('acc-email').textContent = u.email || '—';
-        document.getElementById('acc-verified').textContent = u.email_verified ? T('conta.yes') : T('conta.pending');
+        var verifiedEl = document.getElementById('acc-verified');
+        verifiedEl.textContent = u.email_verified ? T('conta.yes') : T('conta.pending');
+        // E-mail pendente: oferece reenviar a confirmação direto daqui.
+        if (!u.email_verified) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.id = 'resend-confirm-btn';
+          btn.className = 'btn-resend';
+          btn.textContent = T('conta.resendBtn');
+          btn.addEventListener('click', function () {
+            btn.disabled = true;
+            auth.resendConfirmation().then(function (res) {
+              if (res && res.ok) {
+                showBanner('ok', T('conta.resendSent'));
+              } else {
+                btn.disabled = false;
+                showBanner('err', T('conta.resendError'));
+              }
+            }).catch(function () {
+              btn.disabled = false;
+              showBanner('err', T('conta.resendError'));
+            });
+          });
+          verifiedEl.appendChild(document.createTextNode(' '));
+          verifiedEl.appendChild(btn);
+        }
       }
 
       function renderSubscription(sub) {
