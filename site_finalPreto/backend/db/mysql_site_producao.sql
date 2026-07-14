@@ -15,7 +15,7 @@ ON DUPLICATE KEY UPDATE name = VALUES(name);
 
 INSERT INTO sites (id, org_id, site_key, name, domain, is_active)
 VALUES (2, 2, '01KXF5AHSAE0DNKZFX27SXWCRF', 'Site institucional Help2See',
-        'help2see.vercel.app', 1)
+        'help2-see.vercel.app', 1)
 ON DUPLICATE KEY UPDATE
   site_key = VALUES(site_key), name = VALUES(name),
   domain = VALUES(domain), is_active = VALUES(is_active);
