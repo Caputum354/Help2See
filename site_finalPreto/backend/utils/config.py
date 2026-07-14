@@ -166,6 +166,10 @@ class Settings:
     SMTP_SSL: bool = os.getenv("SMTP_SSL", "false").strip().lower() in (
         "1", "true", "yes", "on"
     )
+    # API HTTP do Brevo (envio por HTTPS/443 — hosts como o Railway bloqueiam
+    # portas SMTP em planos gratuitos). Quando definida, tem prioridade sobre o
+    # SMTP; o remetente continua sendo SMTP_FROM (verificado no painel do Brevo).
+    BREVO_API_KEY: str = os.getenv("BREVO_API_KEY", "").strip()
 
     # ── Assinatura do plano Profissional (Mercado Pago) ─────────
     # Credenciais SÓ no ambiente; nunca vão ao navegador. Em dev/sandbox use o
@@ -195,7 +199,9 @@ class Settings:
 
     @property
     def email_configured(self) -> bool:
-        return bool(self.SMTP_HOST and self.SMTP_FROM)
+        # Basta um transporte: API HTTP do Brevo OU servidor SMTP. O remetente
+        # (SMTP_FROM) é obrigatório nos dois.
+        return bool(self.SMTP_FROM and (self.BREVO_API_KEY or self.SMTP_HOST))
 
     @property
     def elevenlabs_configured(self) -> bool:
