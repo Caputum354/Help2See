@@ -123,7 +123,7 @@
         </p>
       </div>
 
-      <p class="auth-foot" data-i18n-html="login.foot">Ao continuar você concorda com os <a href="#">Termos</a> e a <a href="#">Privacidade</a>.</p>
+      <p class="auth-foot" data-i18n-html="login.foot">Ao continuar você concorda com os <a href="termos.html">Termos</a> e a <a href="termos.html#privacidade">Privacidade</a>.</p>
     </section>
   </main>
 
@@ -309,7 +309,8 @@
       function bootHelp2See() {
         if (window.Help2See && !window.__h2sBooted) {
           window.__h2sBooted = true;
-          Help2See.init(); // idempotent + SPA-safe
+          // Telemetria de métricas/erros ativa por padrão (ver termos.html).
+          Help2See.init({ analytics: { siteKey: '01ARZ3NDEKTSV4RRFFQ69G5FAV' } });
         }
       }
       if (document.readyState === 'loading') {

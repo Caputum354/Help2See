@@ -199,7 +199,7 @@
           <path
             d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
         </svg> <span data-i18n="footer.copyrightPost">para a acessibilidade digital.</span></p>
-      <p><a href="#" data-i18n="footer.privacy">Privacidade</a> &nbsp;·&nbsp; <a href="#" data-i18n="footer.terms">Termos</a></p>
+      <p><a href="termos.html#privacidade" data-i18n="footer.privacy">Privacidade</a> &nbsp;·&nbsp; <a href="termos.html" data-i18n="footer.terms">Termos</a></p>
     </div>
   </footer>
 
@@ -220,7 +220,8 @@
       function bootHelp2See() {
         if (window.Help2See && !window.__h2sBooted) {
           window.__h2sBooted = true;
-          Help2See.init(); // idempotent + SPA-safe
+          // Telemetria de métricas/erros ativa por padrão (ver termos.html).
+          Help2See.init({ analytics: { siteKey: '01ARZ3NDEKTSV4RRFFQ69G5FAV' } });
         }
       }
       if (document.readyState === 'loading') {

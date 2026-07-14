@@ -64,14 +64,16 @@
           : 'https://SEU-BACKEND.up.railway.app'
       ))
     },
-    // Telemetria de acessibilidade privacy-first (OPT-IN, desligada por padrão).
-    // Quando habilitada com um siteKey, o plugin envia em lote sinais anônimos
-    // de uso/fricção para o backend do Help2See (POST /api/collect). Envia APENAS
-    // o siteKey público (nunca o tenant) e NUNCA valores de formulário — no
-    // máximo o nome do campo + um código de validade genérico. O endpoint cai por
-    // padrão em `${voice.baseUrl}/api/collect` quando deixado como null.
+    // Telemetria de acessibilidade privacy-first (ATIVA por padrão; requer um
+    // siteKey — sem ele nada é enviado). Coleta métricas de uso dos recursos e
+    // sinais de fricção/erro para aprimorar o plugin, conforme divulgado nos
+    // Termos de Uso do site (termos.html). Envia em lote para POST /api/collect
+    // APENAS o siteKey público (nunca o tenant) e NUNCA valores de formulário —
+    // no máximo o nome do campo + um código de validade genérico. O endpoint cai
+    // por padrão em `${voice.baseUrl}/api/collect` quando deixado como null.
+    // Para desativar: Help2See.init({ analytics: { enabled: false } }).
     analytics: {
-      enabled: false,
+      enabled: true,
       endpoint: null,
       siteKey: null,
       sampleRate: 1,
@@ -3521,7 +3523,8 @@
   //     código de validade genérico;
   //   • dispara-e-esquece (sendBeacon / fetch keepalive) — nunca bloqueia nem
   //     quebra a página hospedeira; todas as falhas são engolidas.
-  // Estritamente opt-in: Help2See.init({ analytics: { enabled: true, siteKey } }).
+  // Ativa por padrão quando um siteKey é fornecido (divulgado nos Termos de
+  // Uso); opt-out via Help2See.init({ analytics: { enabled: false } }).
   // ============================================================
   const Analytics = (function () {
     let acfg = null;

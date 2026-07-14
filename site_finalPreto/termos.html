@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termos de Uso e Privacidade — Help2See</title>
+  <meta name="description" content="Termos de uso do Help2See: o que coletamos, por quê, e seus direitos. Telemetria de uso do plugin para métricas e correção de erros.">
+  <link rel="shortcut icon" href="img/logo_icon.png" sizes="16x16" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Layout do texto legal — reusa a identidade do site. */
+    .legal-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 150px 24px 90px;
+    }
+    .legal-wrap h1 {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4.6vw, 54px);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .legal-updated {
+      color: var(--gray);
+      font-size: 14px;
+      margin-bottom: 42px;
+    }
+    .legal-wrap h2 {
+      font-family: var(--serif);
+      font-size: 26px;
+      margin: 44px 0 14px;
+      scroll-margin-top: 110px;
+    }
+    .legal-wrap p, .legal-wrap li {
+      color: var(--gray);
+      line-height: 1.75;
+      font-size: 16px;
+      margin-bottom: 14px;
+    }
+    .legal-wrap ul {
+      padding-left: 22px;
+      margin-bottom: 16px;
+    }
+    .legal-wrap strong { color: var(--white); }
+    .legal-note {
+      border-left: 3px solid var(--yellow);
+      background: rgba(211, 220, 42, 0.06);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 18px 0 26px;
+    }
+  </style>
+</head>
+
+<body data-page="termos">
+
+  <a href="#main-content" class="skip-link">Ir para conteúdo principal</a>
+
+  <nav role="navigation" aria-label="Navegação principal">
+    <a href="index.html" class="nav-logo" aria-label="Help2See - Página inicial">
+      <img src="img/help2seeLogo3Escuro.png" alt="Help2See" class="logo-img" />
+    </a>
+  </nav>
+
+  <main id="main-content">
+    <article class="legal-wrap">
+      <h1>Termos de Uso e Privacidade</h1>
+      <p class="legal-updated">Última atualização: julho de 2026</p>
+
+      <h2 id="servico">1. O serviço</h2>
+      <p>O <strong>Help2See</strong> é uma plataforma de acessibilidade digital composta por este site,
+        um plugin de acessibilidade embutível em páginas web (leitura em voz alta, ajustes visuais,
+        Libras e navegação assistida) e uma API que dá suporte a esses recursos. Ao usar o site ou o
+        plugin, você concorda com estes termos.</p>
+
+      <h2 id="conta">2. Conta e assinatura</h2>
+      <p>Alguns recursos exigem cadastro (nome, e-mail e telefone) com confirmação de e-mail. O plano
+        Profissional é cobrado via <strong>Mercado Pago</strong>; não armazenamos dados de cartão — o
+        pagamento é processado inteiramente pelo Mercado Pago. Cancelamentos mantêm o acesso até o fim
+        do período já pago.</p>
+
+      <h2 id="telemetria">3. Telemetria de uso do plugin (métricas e erros)</h2>
+      <div class="legal-note">
+        <p><strong>Transparência:</strong> enquanto você usa o plugin de acessibilidade neste site,
+          coletamos automaticamente <strong>métricas de interação e sinais de erro</strong> — por
+          exemplo, ativar ou desativar recursos como inversão de cores e alto contraste, iniciar ou
+          parar o leitor de voz, uso de atalhos de teclado e mudanças de configuração. Usamos esses
+          dados <strong>exclusivamente para medir o uso real dos recursos, identificar fricções e
+          falhas, e aprimorar o plugin</strong>.</p>
+      </div>
+      <p><strong>O que é coletado:</strong></p>
+      <ul>
+        <li>eventos de interação com o plugin (abrir/fechar painel, ligar/desligar cada recurso de
+          acessibilidade, início/fim da leitura em voz alta, atalhos usados, perfis aplicados);</li>
+        <li>sinais técnicos de fricção e erro (recursos que falham, auditoria automática de
+          acessibilidade da página);</li>
+        <li>um <strong>pseudônimo de visitante</strong> gerado por criptografia (HMAC) que
+          <strong>muda todos os dias</strong> — ele não permite identificar você nem cruzar seus dias
+          de navegação.</li>
+      </ul>
+      <p><strong>O que NUNCA é coletado:</strong></p>
+      <ul>
+        <li>o conteúdo que o leitor de voz lê (apenas a quantidade de caracteres);</li>
+        <li>valores digitados em formulários (no máximo o nome do campo e um código genérico de
+          validade, para detectar fricção);</li>
+        <li>seu endereço IP bruto, nome, e-mail ou qualquer identificador direto — o IP é usado
+          apenas, de forma transitória, para compor o pseudônimo diário e nunca é gravado.</li>
+      </ul>
+      <p><strong>Retenção:</strong> os eventos brutos expiram automaticamente após <strong>90
+        dias</strong>; mantemos apenas agregados estatísticos (contagens por hora/dia) sem qualquer
+        identificador de visitante.</p>
+      <p><strong>Base legal (LGPD):</strong> tratamos esses dados pseudonimizados com fundamento no
+        legítimo interesse de melhorar a acessibilidade do serviço (art. 7º, IX, Lei 13.709/2018),
+        aplicando minimização de dados por padrão.</p>
+      <p><strong>Como desativar:</strong> sites que embutem o plugin podem desligar a telemetria na
+        inicialização (<code>Help2See.init({ analytics: { enabled: false } })</code>). Se você deseja
+        que dados associados ao seu uso não sejam coletados neste site, entre em
+        <a href="contato.html">contato</a>.</p>
+
+      <h2 id="privacidade">4. Privacidade — demais dados</h2>
+      <ul>
+        <li><strong>Dados de conta</strong> (nome, e-mail, telefone): usados para autenticação,
+          confirmação de e-mail, recuperação de senha e comunicação sobre o serviço. Senhas são
+          armazenadas com hash Argon2 — nunca em texto claro.</li>
+        <li><strong>Histórico de login</strong>: guardamos data e origem dos acessos à sua conta por
+          segurança (detecção de abuso).</li>
+        <li><strong>Formulário de contato</strong>: os dados enviados viram um e-mail para nossa
+          equipe e não são armazenados em banco de dados.</li>
+        <li><strong>Leitura em voz alta</strong>: o texto é processado de forma transitória para gerar
+          o áudio e não é armazenado.</li>
+      </ul>
+      <p>Não vendemos nem compartilhamos seus dados com terceiros para publicidade. Compartilhamos
+        dados apenas com os operadores estritamente necessários ao serviço (processador de pagamento,
+        provedor de síntese de voz e provedor de e-mail).</p>
+
+      <h2 id="direitos">5. Seus direitos</h2>
+      <p>Nos termos da LGPD, você pode solicitar acesso, correção, portabilidade ou exclusão dos seus
+        dados de conta, bem como informações sobre o tratamento, pela página de
+        <a href="contato.html">contato</a>.</p>
+
+      <h2 id="responsabilidades">6. Uso aceitável e responsabilidades</h2>
+      <p>Você concorda em não usar o serviço para atividades ilícitas, não tentar burlar mecanismos de
+        segurança e não revender o serviço sem autorização. O Help2See é fornecido "como está",
+        buscando conformidade com WCAG e a Lei 13.146/2015; não garantimos disponibilidade
+        ininterrupta.</p>
+
+      <h2 id="alteracoes">7. Alterações destes termos</h2>
+      <p>Podemos atualizar estes termos para refletir mudanças no serviço ou na legislação. Mudanças
+        relevantes serão destacadas nesta página com nova data de atualização.</p>
+
+      <p style="margin-top:40px"><a href="index.html" class="btn-secondary"
+          style="display:inline-block">← Voltar ao início</a></p>
+    </article>
+  </main>
+
+</body>
+
+</html>
