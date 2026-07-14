@@ -61,7 +61,7 @@
       baseUrl: (window.H2S_API_BASE || (
         /^(localhost|127\.0\.0\.1|)$/.test(location.hostname)
           ? 'http://127.0.0.1:8000'
-          : 'https://SEU-BACKEND.up.railway.app'
+          : 'https://help2see-production.up.railway.app'
       ))
     },
     // Telemetria de acessibilidade privacy-first (ATIVA por padrão; requer um
