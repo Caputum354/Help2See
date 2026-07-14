@@ -48,9 +48,10 @@
       hamburger.addEventListener('click', function () {
         setMenu(!hamburger.classList.contains('open'));
       });
-      // Close after choosing a destination.
+      // Close after choosing a destination — or tapping the backdrop
+      // (the container itself is the darkened area outside the drawer).
       mobileMenu.addEventListener('click', function (e) {
-        if (e.target.closest('a')) setMenu(false);
+        if (e.target.closest('a') || e.target === mobileMenu) setMenu(false);
       });
       // Close on Escape for keyboard users.
       document.addEventListener('keydown', function (e) {
