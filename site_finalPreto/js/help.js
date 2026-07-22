@@ -1042,13 +1042,42 @@
       }
 
       /* ── Accessibility Effect Classes ── */
-      .h2s-high-contrast *, .h2s-high-contrast {
+      /* classe triplicada: especificidade (0,3,0) para vencer regras do site com
+         seletores compostos + !important (ex.: .mix-blue .how-step). As exclusões
+         ficam em :where() para não inflar a especificidade (senão os :not(#id)
+         tornariam a regra impossível de sobrescrever). img/video ficam de fora:
+         forçar fundo neles não ajuda e quebra filtros aplicados por cima. */
+      .h2s-high-contrast.h2s-high-contrast.h2s-high-contrast,
+      .h2s-high-contrast.h2s-high-contrast.h2s-high-contrast *:where(:not(#h2s-panel):not(#h2s-panel *):not(#h2s-trigger):not(#h2s-trigger *):not(img):not(video)) {
         background: #fff !important; color: #000 !important; border-color: #000 !important;
+        -webkit-text-fill-color: #000 !important; text-shadow: none !important;
       }
-      .h2s-dark-contrast *, .h2s-dark-contrast {
+      .h2s-dark-contrast.h2s-dark-contrast.h2s-dark-contrast,
+      .h2s-dark-contrast.h2s-dark-contrast.h2s-dark-contrast *:where(:not(#h2s-panel):not(#h2s-panel *):not(#h2s-trigger):not(#h2s-trigger *):not(img):not(video)) {
         background: #000 !important; color: #fff !important; border-color: #fff !important;
+        -webkit-text-fill-color: #fff !important; text-shadow: none !important;
       }
-      .h2s-dark-contrast a { color: #D3DC2A !important; }
+      .h2s-dark-contrast.h2s-dark-contrast.h2s-dark-contrast a:where(:not(#h2s-panel a)) {
+        color: #D3DC2A !important; -webkit-text-fill-color: #D3DC2A !important;
+      }
+      /* divs decorativos vazios (glows, orbs, "beams"): com fundo forçado opaco
+         eles viram caixas brancas/pretas que COBREM o texto estático (elementos
+         posicionados como em/accent-word escapam pela ordem de pintura, o resto
+         some). Vazios não têm texto, então fundo neles não serve para nada. */
+      .h2s-high-contrast.h2s-high-contrast.h2s-high-contrast div:where(:not(#h2s-panel):not(#h2s-panel *)):empty,
+      .h2s-dark-contrast.h2s-dark-contrast.h2s-dark-contrast div:where(:not(#h2s-panel):not(#h2s-panel *)):empty {
+        background: transparent !important;
+      }
+      /* pseudo-elementos: o seletor universal não os alcança; corrige texto com fill
+         transparente (ex.: shimmer do hero) sem mexer em background-color, que desenha
+         ícones (ex.: .faq-icon) */
+      .h2s-high-contrast *:where(:not(#h2s-panel):not(#h2s-panel *))::before,
+      .h2s-high-contrast *:where(:not(#h2s-panel):not(#h2s-panel *))::after,
+      .h2s-dark-contrast *:where(:not(#h2s-panel):not(#h2s-panel *))::before,
+      .h2s-dark-contrast *:where(:not(#h2s-panel):not(#h2s-panel *))::after {
+        -webkit-text-fill-color: currentColor !important;
+        background-image: none !important;
+      }
       .h2s-inverted { filter: invert(1) hue-rotate(180deg); }
       .h2s-inverted img, .h2s-inverted video { filter: invert(1) hue-rotate(180deg); }
       .h2s-monochrome { filter: grayscale(1); }
@@ -1057,6 +1086,11 @@
 
       /* keep the widget itself readable under whole-page filters */
       #h2s-panel, #h2s-trigger, #h2s-magnifier-lens { filter: none !important; }
+      /* -webkit-text-fill-color é herdado: sem isto, o fill forçado no <html>
+         pelos modos de contraste vaza para dentro do widget e apaga os rótulos */
+      #h2s-panel, #h2s-panel *, #h2s-trigger, #h2s-trigger *, #h2s-notif, #h2s-notif * {
+        -webkit-text-fill-color: currentColor;
+      }
 
       /* ── Dyslexia Font ── */
       @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');

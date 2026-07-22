@@ -3141,5 +3141,23 @@ footer::before {
   }
 }
 
+/* ─────────────────────────────────────────
+   21. MODOS DE CONTRASTE DO PLUGIN (Help2See)
+───────────────────────────────────────── */
+/* O logo tem letras escuras; nos modos do plugin que escurecem a página ele
+   precisa acompanhar o novo fundo. No alto contraste (fundo branco) o logo
+   original já funciona — sem regra. */
+html.h2s-inverted .logo-img {
+  /* anula a re-inversão de <img> do plugin: o logo inverte junto com a página
+     e fica claro sobre o fundo invertido (escuro) */
+  filter: none !important;
+}
+
+html.h2s-dark-contrast .logo-img {
+  /* fundo forçado a preto: letras escuras viram claras (hue-rotate preserva
+     o matiz do "2" roxo) */
+  filter: invert(1) hue-rotate(180deg);
+}
+
 
 
