@@ -434,6 +434,7 @@
 
       /* ── login ── */
       'login.title': 'Entrar — Help2See',
+      'login.heading': 'Entrar na sua conta',
       'login.intro': 'Acesse sua conta para entrar no site. É rápido e gratuito.',
       'login.tabLogin': 'Entrar',
       'login.tabSignup': 'Criar conta',
@@ -947,6 +948,7 @@
 
       /* ── login ── */
       'login.title': 'Log in — Help2See',
+      'login.heading': 'Sign in to your account',
       'login.intro': 'Sign in to access the site. It’s quick and free.',
       'login.tabLogin': 'Log in',
       'login.tabSignup': 'Sign up',
@@ -1460,6 +1462,7 @@
 
       /* ── login ── */
       'login.title': 'Entrar — Help2See',
+      'login.heading': 'Entra en tu cuenta',
       'login.intro': 'Accede a tu cuenta para entrar al sitio. Es rápido y gratis.',
       'login.tabLogin': 'Entrar',
       'login.tabSignup': 'Crear cuenta',
