@@ -76,6 +76,76 @@ Confirmação de cadastro, código OTP de senha e o formulário de contato (Repl
 
 <img width="1902" height="1000" alt="image" src="https://github.com/user-attachments/assets/7097d0a0-1ac0-41e7-83a4-c62d36cf4bd3" />
 
+## 🗄️ Bancos de dados em detalhe
+
+O Help2See usa **persistência poliglota** — cada banco faz o que faz melhor:
+
+| Banco | Papel | O que guarda |
+|---|---|---|
+| **MySQL** (Railway) | Fonte da verdade relacional | Contas, sessões, assinaturas e o mapa `site_key → (site_id, org_id)` |
+| **MongoDB Atlas** | Pipeline de analytics/telemetria | Eventos brutos do plugin (time-series) + agregados para relatórios |
+
+O elo entre os dois: o plugin envia apenas a **`site_key` pública** → o backend consulta o MySQL ([`services/mysql.py`](site_finalPreto/backend/services/mysql.py)) e traduz para `(site_id, org_id)` → esses ids são carimbados nos documentos do Mongo. **O navegador nunca conhece o `org_id`** — a identidade do tenant é decidida exclusivamente no servidor. A resolução usa um cache TTL de 5 minutos, então um site novo (ou desativado) faz efeito em poucos minutos sem bater no MySQL a cada evento.
+
+### MySQL — 9 tabelas (schema em [`db/railway_schema.sql`](site_finalPreto/backend/db/railway_schema.sql))
+
+| Tabela | Propósito |
+|---|---|
+| `organizations` / `sites` | Multi-tenant: cada site cliente tem uma `site_key` (CHAR 26, estilo ULID) que o `resolve_site()` traduz |
+| `users` | Identidade: nome, e-mail, telefone e **hash Argon2** da senha (nunca texto claro) |
+| `sessions` | Sessões de login — o cliente guarda o token bruto; o banco guarda **só o SHA-256** |
+| `password_resets` / `password_reset_codes` | Recuperação de senha (link e OTP de 6 dígitos) — também só hashes, com expiração e contagem de tentativas |
+| `email_verifications` | Tokens de confirmação de e-mail (uso único, expiram em 24h) |
+| `login_history` | Auditoria de logins e tentativas de recuperação (segurança/antiabuso) |
+| `subscriptions` | Assinatura Profissional — `provider_payment_id` é UNIQUE, o que torna o webhook do Mercado Pago **idempotente** (o mesmo pagamento nunca ativa duas vezes) |
+
+### MongoDB Atlas — coleções por concern ([`services/mongo.py`](site_finalPreto/backend/services/mongo.py))
+
+**`events` — coleção time-series (o coração).** Criada com `timeField: "ts"`, `metaField: "meta"` e granularidade por minuto, mais `expireAfterSeconds` de **90 dias**. Isso significa que o próprio MongoDB agrupa os documentos por tempo, comprime e **expira os eventos antigos sozinho** — sem cron de limpeza. Cada interação com o plugin (ativar alto contraste, iniciar o leitor de voz, atalho de teclado…) vira um documento assim (valores ilustrativos):
+
+```json
+{
+  "ts": "2026-07-14T01:47:06Z",
+  "meta": { "org_id": 2, "site_id": 2, "type": "a11y_toggle",
+            "path": "/index.html", "user_id": null,
+            "session_id": null, "plugin_version": "3.0.0" },
+  "visitor": "a1b2c3d4e5f6…",
+  "device": "mobile", "browser": "chrome",
+  "a11y": {}, "detail": { "feature": "invert_colors", "active": true }
+}
+```
+
+**Agregados** (coleções comuns): `metrics_daily`, `a11y_issues`, `alerts`, `wcag_status`. Todas usam **`_id` determinístico** (ex.: `"2|2026-07-14|page|/index.html"`), então re-rodar a agregação **sobrescreve em vez de duplicar** — idempotência por construção.
+
+**Telemetria dedicada** (com índice TTL de 90 dias sobre `ts`): `sessions` (ciclo de vida de cada sessão do plugin), `errors` (erros de JS + exceções do servidor), `performance` (amostras de tempo) e `app_actions` (espelho das ações de auth). O [`services/ingest.py`](site_finalPreto/backend/services/ingest.py) faz o *fan-out*: tipos como `session_start`, `perf_sample` e `client_error` vão direto para a coleção certa, sem passar por `events`.
+
+Todos os índices são garantidos no startup (`ensure_collections()`, idempotente) — o banco e as coleções **nascem sozinhos na primeira gravação**; nada precisa ser criado no painel do Atlas.
+
+### Privacidade no nível do dado
+
+- O campo `visitor` é um **HMAC-SHA256 de `site_id | IP | user_agent | dia`** ([`services/visitor.py`](site_finalPreto/backend/services/visitor.py)). Como o dia do calendário entra no hash, o mesmo visitante recebe um id **diferente a cada dia**: dá para contar visitantes únicos *dentro de um dia*, mas **não** dá para seguir uma pessoa ao longo dos dias.
+- O **IP e o User-Agent alimentam apenas o hash — nunca são gravados** em nenhuma coleção.
+- Todo `detail`/`a11y` passa pelo **sanitizador** antes da escrita: tipos de evento fora da lista permitida são descartados, strings são limitadas e **valores de formulário nunca entram** (no máximo o nome do campo + um código genérico de validade).
+
+### Ciclo de vida do dado
+
+```
+plugin (site_key pública)
+   │ POST /api/collect (lotes de até 200 eventos)
+   ▼
+backend: resolve tenant (MySQL) → valida tipo → sanitiza → carimba visitor
+   ▼
+MongoDB Atlas: events (time-series, TTL 90 dias)
+   │ rollup horário — jobs/aggregate.py (APScheduler, idempotente)
+   ▼
+metrics_daily · a11y_issues · alerts · wcag_status   ← permanentes, sem
+                                                        identificadores de visitante
+   ▼
+após 90 dias os eventos brutos expiram — só os agregados sobrevivem
+```
+
+Detalhes completos do pipeline em [`ANALYTICS.md`](site_finalPreto/ANALYTICS.md).
+
 ## Stack
 
 | Camada | Tecnologia |
