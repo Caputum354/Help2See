@@ -158,6 +158,122 @@ Detalhes completos do pipeline em [`ANALYTICS.md`](site_finalPreto/ANALYTICS.md)
 | Testes | pytest (54 testes, sem dependência de serviços reais) |
 | Hospedagem | Vercel (site) · Railway (API + MySQL) · MongoDB Atlas |
 
+## 📚 APIs, bibliotecas e frameworks em detalhe
+
+A tabela acima é o resumo; esta seção documenta **cada peça** — o que é, para que serve no projeto e onde está no código.
+
+### Referência da API do backend (20 endpoints)
+
+Todos sob o prefixo `/api` ([`app.py`](site_finalPreto/backend/app.py) monta os routers de [`routes/`](site_finalPreto/backend/routes/)). Documentação interativa gerada automaticamente pelo FastAPI em [`/docs`](https://help2see-production.up.railway.app/docs) (Swagger UI).
+
+**Sistema**
+
+| Método e rota | O que faz |
+|---|---|
+| `GET /` | Boas-vindas da API (confirma que o serviço está de pé) |
+| `GET /api/health` | Health check: reporta `mongo_ok` e `mysql_ok` — primeiro lugar para olhar quando algo falha |
+
+**Voz (proxy ElevenLabs)** — [`routes/tts.py`](site_finalPreto/backend/routes/tts.py), [`routes/voices.py`](site_finalPreto/backend/routes/voices.py)
+
+| Método e rota | O que faz |
+|---|---|
+| `POST /api/tts` | Recebe texto, devolve áudio MP3 narrado. A chave do ElevenLabs fica só no servidor; sem ela o plugin usa a voz do navegador |
+| `GET /api/voices` | Lista as vozes disponíveis para o seletor do plugin |
+
+**Autenticação** — [`routes/auth.py`](site_finalPreto/backend/routes/auth.py) · endpoints com 🔒 exigem `Authorization: Bearer <token>`
+
+| Método e rota | O que faz |
+|---|---|
+| `POST /api/auth/register` | Cria a conta (senha vira hash Argon2) e dispara o e-mail de confirmação |
+| `POST /api/auth/confirm` | Confirma o e-mail a partir do token recebido (uso único, expira em 24h) |
+| `POST /api/auth/resend-confirmation` | Reenvia o e-mail de confirmação enquanto a conta está pendente |
+| `POST /api/auth/login` | Valida credenciais e emite o token de sessão (TTL 30 dias; banco guarda só o SHA-256) |
+| `POST /api/auth/logout` 🔒 | Revoga a sessão atual |
+| `GET /api/auth/me` 🔒 | Dados do usuário logado (derivado do token, nunca do cliente) |
+| `POST /api/auth/forgot` | Inicia a recuperação: envia código OTP de 6 dígitos por e-mail (rate-limited) |
+| `POST /api/auth/verify-code` | Confere o OTP e devolve um token temporário de redefinição |
+| `POST /api/auth/reset` | Troca a senha usando o token temporário |
+
+**Assinatura Profissional (Mercado Pago)** — [`routes/subscription.py`](site_finalPreto/backend/routes/subscription.py)
+
+| Método e rota | O que faz |
+|---|---|
+| `GET /api/subscription` 🔒 | Estado da assinatura do usuário logado |
+| `POST /api/subscription/checkout` 🔒 | Cria a preferência do Checkout Pro — o **preço é decidido aqui**, no servidor |
+| `POST /api/subscription/confirm` 🔒 | Confirma o retorno do checkout (idempotente) |
+| `POST /api/subscription/cancel` 🔒 | Cancela mantendo o acesso até o fim do período pago |
+| `POST /api/subscription/webhook` | Notificações do Mercado Pago — só aceitas com assinatura HMAC (`x-signature`) válida |
+
+**Telemetria e contato** — [`routes/collect.py`](site_finalPreto/backend/routes/collect.py), [`routes/contact.py`](site_finalPreto/backend/routes/contact.py)
+
+| Método e rota | O que faz |
+|---|---|
+| `POST /api/collect` | Ingestão de telemetria do plugin: lotes de até 200 eventos, exige `site_key` cadastrada, sanitiza e pseudonimiza antes de gravar no Mongo |
+| `POST /api/contact` | Formulário de contato → e-mail via Brevo (Reply-To = visitante, rate-limit por IP, nada persistido) |
+
+### APIs e serviços externos consumidos
+
+| Serviço | Como entra | Por quê |
+|---|---|---|
+| **ElevenLabs** (REST) | Backend como proxy (`/api/tts`, modelo `eleven_multilingual_v2`) | Voz neural em português para a leitura da página; a API key nunca chega ao navegador |
+| **Mercado Pago** (SDK `mercadopago`) | Checkout Pro + webhook assinado | Pagamento da assinatura Profissional sem manusear cartão no nosso servidor |
+| **Brevo** (REST HTTPS) | [`services/mailer`](site_finalPreto/backend/services/) com fallback `smtplib` | E-mails transacionais (confirmação, OTP, contato) — HTTPS porque o Railway bloqueia portas SMTP |
+| **VLibras** (widget do gov.br) | `<script>` em todas as páginas | Tradução do conteúdo para Libras — requisito de acessibilidade |
+| **Google Fonts** | `<link>` nas páginas + `@import` no plugin | Tipografia do site e fonte **Lexend** (modo dislexia do plugin) |
+| **cdnjs** | `<script>` GSAP 3.12.5 | Entrega do GSAP/ScrollTrigger (abaixo) |
+
+### Bibliotecas e frameworks do frontend
+
+O site e o plugin são **JavaScript puro, sem build e sem framework** — decisão de projeto: o plugin precisa se embutir em qualquer página sem conflitar com o que já existe lá.
+
+| Biblioteca | Onde | Papel |
+|---|---|---|
+| **GSAP 3.12.5 + ScrollTrigger** (CDN) | [`js/script.js`](site_finalPreto/js/script.js) | Único framework visual: fade-in suave das seções ao rolar. **Opcional** — se o CDN falhar ou o usuário preferir movimento reduzido, o site funciona igual, sem animação |
+| **VLibras plugin** | todas as páginas | Widget oficial de Libras do governo |
+| Scripts próprios | [`js/`](site_finalPreto/js/) | `help.js` (o plugin, ~210 KB autocontido), `i18n.js` (traduções PT/EN/ES), `auth-client.js`/`auth-nav.js` (sessão no site), `script.js` (menu, FAQ, scroll), `particle-wave.js` (parallax decorativo), `team-cards.js` (página Sobre) |
+
+**APIs nativas do navegador** que o plugin usa (por isso ele não precisa de dependências):
+
+- **Web Speech — `speechSynthesis`**: fallback gratuito de leitura em voz alta quando o backend/ElevenLabs está indisponível;
+- **Web Speech — `SpeechRecognition`**: comandos de voz do plugin ("alto contraste", "ler página"…);
+- **`fetch` + `Audio`**: baixa e toca o MP3 do `/api/tts`;
+- **`localStorage`**: persiste as preferências de acessibilidade entre visitas;
+- **`MutationObserver`**: reaplica os ajustes quando a página muda dinamicamente;
+- **`matchMedia`**: respeita `prefers-reduced-motion` do sistema operacional.
+
+### Bibliotecas Python do backend ([`requirements.txt`](site_finalPreto/backend/requirements.txt))
+
+**Núcleo da API**
+
+| Biblioteca | Versão | Papel |
+|---|---|---|
+| **FastAPI** | 0.115 | Framework web: rotas, validação automática, docs Swagger em `/docs` |
+| **Uvicorn** | 0.34 | Servidor ASGI que executa o FastAPI (dev e produção, via `Procfile`) |
+| **Pydantic v2** | ≥2.11 | Schemas de entrada/saída ([`models/`](site_finalPreto/backend/models/)) — request inválido nem chega na rota |
+| **python-dotenv** | 1.0 | Carrega o `.env` em desenvolvimento |
+| **requests** | 2.32 | Chamadas HTTP de saída (ElevenLabs, Brevo) |
+
+**Dados e analytics**
+
+| Biblioteca | Versão | Papel |
+|---|---|---|
+| **PyMongo** | 4.10 | Driver do MongoDB Atlas: coleção time-series, índices TTL, agregados |
+| **SQLAlchemy** | 2.0 | Acesso ao MySQL (contas, sessões, assinaturas, `resolve_site()`) |
+| **PyMySQL** | 1.1 | Driver MySQL puro-Python usado pelo SQLAlchemy |
+| **cryptography** | ≥43 | Exigida pelo PyMySQL para a autenticação `caching_sha2_password` do MySQL 8 |
+| **APScheduler** | 3.11 | Agenda o rollup horário de analytics ([`jobs/aggregate.py`](site_finalPreto/backend/jobs/aggregate.py)) dentro do próprio processo |
+| **cachetools** | 5.5 | Cache TTL (5 min) do `resolve_site()` — evita uma consulta MySQL por evento |
+
+**Segurança e integrações**
+
+| Biblioteca | Versão | Papel |
+|---|---|---|
+| **argon2-cffi** | 25.1 | Hash de senha Argon2id (recomendação OWASP — nunca senha em texto claro) |
+| **email-validator** | 2.3 | Dá o tipo `EmailStr` do Pydantic (valida e-mail no schema) |
+| **mercadopago** | 2.2 | SDK oficial: cria preferências do Checkout Pro e consulta pagamentos do webhook |
+
+**Só para testes** ([`requirements-dev.txt`](site_finalPreto/backend/requirements-dev.txt)): **pytest** 8.3 (roda os 54 testes) e **httpx** 0.28 (cliente HTTP que o `TestClient` do FastAPI usa para chamar a API em memória, sem subir servidor).
+
 ## Rodando localmente
 
 Pré-requisitos: **Python 3.11+**, **MySQL 8** e **MongoDB** rodando localmente.
